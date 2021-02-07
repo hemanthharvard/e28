@@ -16,6 +16,7 @@ window.onload = function() {
 
     playButton.addEventListener('click', play);
 
+    // Decides the computer selection by random
     function computerSelection() {
         const myArray = [
             "Rock",
@@ -25,6 +26,7 @@ window.onload = function() {
           return myArray[Math.floor(Math.random() * myArray.length)];
     }
 
+    // Decides the game result
     function gameResult(playerChoice, computerChoice) {
         let result = "win";
 
@@ -58,15 +60,19 @@ window.onload = function() {
         return result;
     }
 
+    // Main function which starts a new game
     function play() {
         // Hide results for new game
         winMessage.style.display = "none";
         loseMessage.style.display = "none";
         tieMessage.style.display = "none";
+        // Fetch player's choice
         playerChoice = document.querySelector('input[name="choice"]:checked').value;
         userSelectionMessage.innerHTML = "You selected: " + playerChoice;
+        // Fetch computer's choice
         const computerChoice = computerSelection();
         computerSelectionMessage.innerHTML = "Computer selected: " + computerChoice;
+        // Decide the game result
         switch(gameResult(playerChoice, computerChoice)) {
             case "win": 
                 winMessage.style.display = "block";
