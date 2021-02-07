@@ -14,22 +14,28 @@
         <h1>Let's play Rock, Paper or Scissor!</h1>
         <h3>Select one:</h3>
         <label>
-            <input type="radio" value="rock" name="choice" checked>
+            <input type="radio" value="Rock" name="choice" checked>
             Rock <img src="./images/rock.png" alt="Rock">
         </label>
         <label>
-            <input type="radio" value="paper" name="choice">
+            <input type="radio" value="Paper" name="choice">
             Paper <img src="./images/paper.png" alt="Paper">
         </label>
         <label>
-            <input type="radio" value="scissor" name="choice">
+            <input type="radio" value="Scissor" name="choice">
             Scissor <img src="./images/scissor.png" alt="Scissor">
         </label>
     </div>
     <div>
         <button id="playButton" class="playButton">Play!</button>
     </div>
-    <div id="results">
+    <div>
+        <div>
+            <span id="userSelectionMessage"></span>
+        </div>
+        <div>
+            <span id="computerSelectionMessage"></span>
+        </div>
         <span id="resultMessage"></span>
         <div id="winMessage" class="message">
             <h3>You won!</h3>
@@ -38,6 +44,11 @@
         <div id="loseMessage" class="message">
             <h3>You lost!</h3>
             <img src="./images/sad.png" alt="Sad">
+        </div>
+        <div id="tieMessage" class="message">
+            <h3>It's a tie!</h3>
+            <img src="./images/tie.png" alt="Tie">
+            <p>Try again!</p>
         </div>
     </div>
 </body>
