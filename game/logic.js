@@ -4,7 +4,6 @@ window.onload = function() {
     let playButton = document.querySelector('#playButton');
     let userSelectionMessage = document.querySelector('#userSelectionMessage');
     let computerSelectionMessage = document.querySelector('#computerSelectionMessage');
-    let resultMessage = document.querySelector('#resultMessage');
     let winMessage = document.querySelector('#winMessage');
     let loseMessage = document.querySelector('#loseMessage');
     let tieMessage = document.querySelector('#tieMessage');
