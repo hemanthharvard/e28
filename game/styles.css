@@ -1,0 +1,15 @@
+.playButton {
+    background-color: yellow;
+    cursor: pointer;
+    padding: 5%;
+    margin: 5%;
+}
+
+.playButton:hover {
+    background-color: red;
+}
+
+.message {
+    padding: 1%;
+    margin: 2%;
+}
