@@ -10,10 +10,7 @@ window.onload = function() {
     let tieMessage = document.querySelector('#tieMessage');
     let playerChoice = document.querySelector('input[name="choice"]:checked').value;
 
-    const img = new Image();   // Create new img element
-    img.src = './images/sad.png'; // Set source path
-
-    // Hide restuls on load
+    // Initialize results to none
     winMessage.style.display = "none";
     loseMessage.style.display = "none";
     tieMessage.style.display = "none";
@@ -30,17 +27,32 @@ window.onload = function() {
     }
 
     function gameResult(playerChoice, computerChoice) {
-        let result = "lose";
+        let result = "win";
 
         switch(playerChoice) {
             case "Rock":
-                console.log("Rock");
+                if(computerChoice === "Rock") {
+                    result = "tie";
+                }
+                else if(computerChoice === "Paper") {
+                    result = "lose";
+                }
                 break;
             case "Paper":
-                console.log("Paper");
+                if(computerChoice === "Paper") {
+                    result = "tie";
+                }
+                else if(computerChoice === "Scissor") {
+                    result = "lose";
+                }
                 break;
             case "Scissor":
-                console.log("Scissor");
+                if(computerChoice === "Scissor") {
+                    result = "tie";
+                }
+                else if(computerChoice === "Rock") {
+                    result = "lose";
+                }
                 break;
         }
 
@@ -48,6 +60,10 @@ window.onload = function() {
     }
 
     function play() {
+        // Hide results for new game
+        winMessage.style.display = "none";
+        loseMessage.style.display = "none";
+        tieMessage.style.display = "none";
         playerChoice = document.querySelector('input[name="choice"]:checked').value;
         userSelectionMessage.innerHTML = "You selected: " + playerChoice;
         const computerChoice = computerSelection();
