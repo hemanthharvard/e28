@@ -1,0 +1,6 @@
+/* App CSS */
+/* Waits for data to be loaded */
+
+[v-cloak] {
+    display: none;
+}
