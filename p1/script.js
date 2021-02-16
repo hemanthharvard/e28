@@ -6,7 +6,7 @@ const Game = {
         }
     },
     methods: {
-        userSelection() {
+        makeUserSelection() {
             this.userSelection;
         }
     }
