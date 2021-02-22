@@ -20,20 +20,20 @@
                 <h3>Select one:</h3>
                 <div class="selectionItems">
                     <label>
-                        <input type="radio" value="Rock" name="choice" v-model="userSelection" checked>
+                        <input type="radio" value="Rock" name="choice" checked>
                         Rock <img src="./images/rock.png" alt="Rock">
                     </label>
                     <label>
-                        <input type="radio" value="Paper" name="choice" v-model="userSelection">
+                        <input type="radio" value="Paper" name="choice">
                         Paper <img src="./images/paper.png" alt="Paper">
                     </label>
                     <label>
-                        <input type="radio" value="Scissor" name="choice" v-model="userSelection">
+                        <input type="radio" value="Scissor" name="choice">
                         Scissor <img src="./images/scissor.png" alt="Scissor">
                     </label>
                 </div>
                 <div>
-                    <button v-if="isNewGame" @click="startedNewGame();makeComputerSelection();" id="playButton" class="playButton">Play!</button>
+                    <button v-if="isNewGame" @click="startedNewGame();makeUserSelection();makeComputerSelection();" id="playButton" class="playButton">Play!</button>
                     <button v-else @click="resetGame" id="playButton" class="playButton">Try again!</button>
                 </div>
             </div>

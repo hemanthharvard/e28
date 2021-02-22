@@ -14,8 +14,8 @@ const Game = {
         resetGame() {
             this.isNewGame = true;
         },
-        setUserSelection(item) {
-            this.userSelection = item;
+        makeUserSelection() {
+            this.userSelection = document.querySelector('input[name="choice"]:checked').value;
         },
         generateComputerSelection() {
             const myArray = [
