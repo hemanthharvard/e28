@@ -7,7 +7,28 @@
 
 body {
     background-color: yellowgreen;
-    text-align: center;
+}
+
+.gameTemplate {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.gameSelectionArea {
+    width: 60%;
+}
+
+.selectionItems {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.gameResultArea {
+    width: 40%;
 }
 
 .playButton {
@@ -25,9 +46,11 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .resultMessage {
     padding: 1%;
     margin: 1%;
+    text-align: center;
 }
