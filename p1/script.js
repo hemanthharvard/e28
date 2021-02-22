@@ -8,19 +8,25 @@ const Game = {
         }
     },
     methods: {
-        resetGame() {
+        startedNewGame() {
             this.isNewGame = false;
+        },
+        resetGame() {
+            this.isNewGame = true;
         },
         setUserSelection(item) {
             this.userSelection = item;
         },
-        makeComputerSelection() {
+        generateComputerSelection() {
             const myArray = [
                 "Rock",
                 "Paper",
                 "Scissor"
               ];
               return myArray[Math.floor(Math.random() * myArray.length)];
+        },
+        makeComputerSelection() {
+            this.computerSelection = this.generateComputerSelection();
         },
         gameResult(playerChoice, computerChoice) {
             let result = "win";

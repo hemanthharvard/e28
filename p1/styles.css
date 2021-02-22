@@ -21,7 +21,13 @@ body {
     background-color: red;
 }
 
-.message {
+.selectionMessage {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.resultMessage {
     padding: 1%;
     margin: 1%;
 }

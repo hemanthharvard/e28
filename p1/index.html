@@ -5,6 +5,7 @@
     <title>Let's play Rock, Paper or Scissor!</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href=data:, rel=icon>
     <script src="https://unpkg.com/vue@next" defer></script>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="./styles.css">
@@ -15,52 +16,89 @@
         <h1>Let's play Rock, Paper or Scissor!</h1>
         <h3>Select one:</h3>
         <label>
-            <input type="radio" value="Rock" name="choice" checked>
+            <input type="radio" value="Rock" name="choice" v-model="userSelection" checked>
             Rock <img src="./images/rock.png" alt="Rock">
         </label>
         <label>
-            <input type="radio" value="Paper" name="choice">
+            <input type="radio" value="Paper" name="choice" v-model="userSelection">
             Paper <img src="./images/paper.png" alt="Paper">
         </label>
         <label>
-            <input type="radio" value="Scissor" name="choice">
+            <input type="radio" value="Scissor" name="choice" v-model="userSelection">
             Scissor <img src="./images/scissor.png" alt="Scissor">
         </label>
-    </div>
-    <div>
-        <div v-if="isNewGame">
-            <button id="playButton" class="playButton">Play!</button>
-        </div>
-        <div v-else>
-            <button id="playButton" class="playButton">Try again!</button>
-        </div>
-    </div>
-    <div>
         <div>
-            <span id="userSelectionMessage"></span>
+            <button v-if="isNewGame" @click="startedNewGame();makeComputerSelection();" id="playButton" class="playButton">Play!</button>
+            <button v-else @click="resetGame" id="playButton" class="playButton">Try again!</button>
         </div>
         <div>
-            <span id="computerSelectionMessage"></span>
+            <!-- User selected message -->
+            <div class="selectionMessage">
+                <template v-if="!isNewGame && userSelection === 'Rock'">
+                    <div id="userSelection">
+                        <h3>You selected:</h3>
+                        <p>Rock</p>
+                        <img src="./images/rock.png" alt="Rock">
+                    </div>
+                </template>
+                <template v-if="!isNewGame && userSelection === 'Paper'">
+                    <div id="userSelection">
+                        <h3>You selected:</h3>
+                        <p>Paper</p>
+                        <img src="./images/paper.png" alt="Paper">
+                    </div>
+                </template>
+                <template v-if="!isNewGame && userSelection === 'Scissor'">
+                    <div id="userSelection">
+                        <h3>You selected:</h3>
+                        <p>Scissor</p>
+                        <img src="./images/scissor.png" alt="Scissor">
+                    </div>
+                </template>
+                <!-- Computer selected message -->
+                <template v-if="!isNewGame && computerSelection === 'Rock'">
+                    <div id="computerSelection">
+                        <h3>Computer selected:</h3>
+                        <p>Rock</p>
+                        <img src="./images/rock.png" alt="Rock">
+                    </div>
+                </template>
+                <template v-if="!isNewGame && computerSelection === 'Paper'">
+                    <div id="computerSelection">
+                        <h3>Computer selected:</h3>
+                        <p>Paper</p>
+                        <img src="./images/paper.png" alt="Paper">
+                    </div>
+                </template>
+                <template v-if="!isNewGame && computerSelection === 'Scissor'">
+                    <div id="computerSelection">
+                        <h3>Computer selected:</h3>
+                        <p>Scissor</p>
+                        <img src="./images/scissor.png" alt="Scissor">
+                    </div>
+                </template>
+            </div>
+            <!-- Display result -->
+            <template v-if="!isNewGame && gameResult(userSelection, computerSelection) === 'win'">
+                <div id="winMessage" class="resultMessage">
+                    <h3>You won!</h3>
+                    <img src="./images/happy.png" alt="Happy">
+                </div>
+            </template>
+            <template v-if="!isNewGame && gameResult(userSelection, computerSelection) === 'lose'">
+                <div id="loseMessage" class="resultMessage">
+                    <h3>You lost!</h3>
+                    <img src="./images/sad.png" alt="Sad">
+                </div>
+            </template>
+            <template v-if="!isNewGame && gameResult(userSelection, computerSelection) === 'tie'">
+                <div id="tieMessage" class="resultMessage">
+                    <h3>It's a tie!</h3>
+                    <img src="./images/tie.png" alt="Tie">
+                    <p>Try again!</p>
+                </div>
+            </template>
         </div>
-        <template v-if="type === 'A'">
-            <div id="winMessage" class="message">
-                <h3>You won!</h3>
-                <img src="./images/happy.png" alt="Happy">
-            </div>
-        </template>
-        <template v-if="type === 'A'">
-            <div id="loseMessage" class="message">
-                <h3>You lost!</h3>
-                <img src="./images/sad.png" alt="Sad">
-            </div>
-        </template>
-        <template v-if="type === 'A'">
-            <div id="tieMessage" class="message">
-                <h3>It"s a tie!</h3>
-                <img src="./images/tie.png" alt="Tie">
-                <p>Try again!</p>
-            </div>
-        </template>
     </div>
 </body>
 </html>
