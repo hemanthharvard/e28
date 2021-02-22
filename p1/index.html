@@ -28,7 +28,12 @@
         </label>
     </div>
     <div>
-        <button id="playButton" class="playButton">Play!</button>
+        <div v-if="isNewGame">
+            <button id="playButton" class="playButton">Play!</button>
+        </div>
+        <div v-else>
+            <button id="playButton" class="playButton">Try again!</button>
+        </div>
     </div>
     <div>
         <div>
@@ -37,19 +42,25 @@
         <div>
             <span id="computerSelectionMessage"></span>
         </div>
-        <div id="winMessage" class="message">
-            <h3>You won!</h3>
-            <img src="./images/happy.png" alt="Happy">
-        </div>
-        <div id="loseMessage" class="message">
-            <h3>You lost!</h3>
-            <img src="./images/sad.png" alt="Sad">
-        </div>
-        <div id="tieMessage" class="message">
-            <h3>It"s a tie!</h3>
-            <img src="./images/tie.png" alt="Tie">
-            <p>Try again!</p>
-        </div>
+        <template v-if="type === 'A'">
+            <div id="winMessage" class="message">
+                <h3>You won!</h3>
+                <img src="./images/happy.png" alt="Happy">
+            </div>
+        </template>
+        <template v-if="type === 'A'">
+            <div id="loseMessage" class="message">
+                <h3>You lost!</h3>
+                <img src="./images/sad.png" alt="Sad">
+            </div>
+        </template>
+        <template v-if="type === 'A'">
+            <div id="tieMessage" class="message">
+                <h3>It"s a tie!</h3>
+                <img src="./images/tie.png" alt="Tie">
+                <p>Try again!</p>
+            </div>
+        </template>
     </div>
 </body>
 </html>
