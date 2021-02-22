@@ -4,7 +4,7 @@ const Game = {
         return {
             isNewGame: true,
             userSelection: "Rock",
-            computerSelection: this.makeComputerSelection(),
+            computerSelection: this.generateComputerSelection(),
         }
     },
     methods: {
