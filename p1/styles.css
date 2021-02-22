@@ -33,6 +33,7 @@ body {
 
 .playButton {
     background-color: yellow;
+    border-radius: 10px;
     cursor: pointer;
     padding: 5%;
     margin: 5%;
