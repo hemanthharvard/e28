@@ -32,7 +32,7 @@
             <!-- Display results -->
             <div class="gameResultArea">
                 <div v-if="!isNewGame">
-                    <h1 v-if="!isNewGame">Game result:</h1>
+                    <h1>Game result:</h1>
                     <!-- User selected message -->
                     <div class="selectionMessage">
                         <div id="userSelection">
@@ -48,24 +48,10 @@
                         </div>
                     </div>
                     <!-- Display result -->
-                    <template v-if="!isNewGame && gameResult(userSelection, computerSelection) === 'win'">
-                        <div id="winMessage" class="resultMessage">
-                            <h3>You won!</h3>
-                            <img src="./images/happy.png" alt="Happy">
-                        </div>
-                    </template>
-                    <template v-if="!isNewGame && gameResult(userSelection, computerSelection) === 'lose'">
-                        <div id="loseMessage" class="resultMessage">
-                            <h3>You lost!</h3>
-                            <img src="./images/sad.png" alt="Sad">
-                        </div>
-                    </template>
-                    <template v-if="!isNewGame && gameResult(userSelection, computerSelection) === 'tie'">
-                        <div id="tieMessage" class="resultMessage">
-                            <h3>It's a tie!</h3>
-                            <img src="./images/tie.png" alt="Tie">
-                        </div>
-                    </template>
+                    <div :id="gameResult(userSelection, computerSelection)" class="resultMessage">
+                        <h3>{{getResultMessage()}}</h3>
+                        <img :src="'./images/' + getResultImage() + '.png'" :alt="getResultMessage()">
+                    </div>
                 </div>
             </div>
         </div>

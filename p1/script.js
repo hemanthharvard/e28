@@ -56,6 +56,42 @@ const Game = {
             }
     
             return result;
+        },
+        getResultMessage() {
+            const result = this.gameResult(this.userSelection, this.computerSelection);
+            let message = "win";
+
+            switch(result) {
+                case "win":
+                    message = "You won!";
+                    break;
+                case "lose":
+                    message = "You lost!";
+                    break;
+                case "tie":
+                    message = "It's a tie!";
+                    break;
+            }
+
+            return message;
+        },
+        getResultImage() {
+            const result = this.gameResult(this.userSelection, this.computerSelection);
+            let image = "Happy";
+
+            switch(result) {
+                case "win":
+                    image = "Happy";
+                    break;
+                case "lose":
+                    image = "Sad";
+                    break;
+                case "tie":
+                    image = "Tie";
+                    break;
+            }
+
+            return image;
         }
     }
 }
