@@ -1,9 +1,11 @@
+let gameItems = ["Rock", "Paper", "Scissor"];
 // Define the options of our application
 const Game = {
     data() {
         return {
+            gameChoices: gameItems,
             isNewGame: true,
-            userSelection: "Rock",
+            userSelection: null,
             computerSelection: this.generateComputerSelection(),
         }
     },
@@ -18,12 +20,7 @@ const Game = {
             this.userSelection = document.querySelector('input[name="choice"]:checked').value;
         },
         generateComputerSelection() {
-            const myArray = [
-                "Rock",
-                "Paper",
-                "Scissor"
-              ];
-              return myArray[Math.floor(Math.random() * myArray.length)];
+            return gameItems[Math.floor(Math.random() * gameItems.length)];
         },
         makeComputerSelection() {
             this.computerSelection = this.generateComputerSelection();

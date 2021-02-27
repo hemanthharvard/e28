@@ -23,8 +23,12 @@ body {
 .selectionItems {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
     flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.selectionImage {
+    height: 132px;
 }
 
 .gameResultArea {

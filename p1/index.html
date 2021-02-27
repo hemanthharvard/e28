@@ -19,17 +19,9 @@
                 <h1>Let's play Rock, Paper or Scissor!</h1>
                 <h3>Select one:</h3>
                 <div class="selectionItems">
-                    <label>
-                        <input type="radio" value="Rock" name="choice" checked>
-                        Rock <img src="./images/rock.png" alt="Rock">
-                    </label>
-                    <label>
-                        <input type="radio" value="Paper" name="choice">
-                        Paper <img src="./images/paper.png" alt="Paper">
-                    </label>
-                    <label>
-                        <input type="radio" value="Scissor" name="choice">
-                        Scissor <img src="./images/scissor.png" alt="Scissor">
+                    <label v-for="(item, index) in gameChoices">
+                        <input type="radio" :value="item" name="choice" :checked="index === 0">
+                        {{item}} <img class="selectionImage" :src="'./images/' + item + '.png'" :alt="item">
                     </label>
                 </div>
                 <div>
@@ -39,72 +31,42 @@
             </div>
             <!-- Display results -->
             <div class="gameResultArea">
-                <h1 v-if="!isNewGame">Game result:</h1>
-                <!-- User selected message -->
-                <div class="selectionMessage">
-                    <template v-if="!isNewGame && userSelection === 'Rock'">
+                <div v-if="!isNewGame">
+                    <h1 v-if="!isNewGame">Game result:</h1>
+                    <!-- User selected message -->
+                    <div class="selectionMessage">
                         <div id="userSelection">
                             <h3>You selected:</h3>
-                            <p>Rock</p>
-                            <img src="./images/rock.png" alt="Rock">
+                            <p>{{userSelection}}</p>
+                            <img :src="'./images/' + userSelection + '.png'" :alt="userSelection">
                         </div>
-                    </template>
-                    <template v-if="!isNewGame && userSelection === 'Paper'">
-                        <div id="userSelection">
-                            <h3>You selected:</h3>
-                            <p>Paper</p>
-                            <img src="./images/paper.png" alt="Paper">
-                        </div>
-                    </template>
-                    <template v-if="!isNewGame && userSelection === 'Scissor'">
-                        <div id="userSelection">
-                            <h3>You selected:</h3>
-                            <p>Scissor</p>
-                            <img src="./images/scissor.png" alt="Scissor">
-                        </div>
-                    </template>
-                    <!-- Computer selected message -->
-                    <template v-if="!isNewGame && computerSelection === 'Rock'">
+                        <!-- Computer selected message -->
                         <div id="computerSelection">
                             <h3>Computer selected:</h3>
-                            <p>Rock</p>
-                            <img src="./images/rock.png" alt="Rock">
+                            <p>{{computerSelection}}</p>
+                            <img :src="'./images/' + computerSelection + '.png'" :alt="computerSelection">
+                        </div>
+                    </div>
+                    <!-- Display result -->
+                    <template v-if="!isNewGame && gameResult(userSelection, computerSelection) === 'win'">
+                        <div id="winMessage" class="resultMessage">
+                            <h3>You won!</h3>
+                            <img src="./images/happy.png" alt="Happy">
                         </div>
                     </template>
-                    <template v-if="!isNewGame && computerSelection === 'Paper'">
-                        <div id="computerSelection">
-                            <h3>Computer selected:</h3>
-                            <p>Paper</p>
-                            <img src="./images/paper.png" alt="Paper">
+                    <template v-if="!isNewGame && gameResult(userSelection, computerSelection) === 'lose'">
+                        <div id="loseMessage" class="resultMessage">
+                            <h3>You lost!</h3>
+                            <img src="./images/sad.png" alt="Sad">
                         </div>
                     </template>
-                    <template v-if="!isNewGame && computerSelection === 'Scissor'">
-                        <div id="computerSelection">
-                            <h3>Computer selected:</h3>
-                            <p>Scissor</p>
-                            <img src="./images/scissor.png" alt="Scissor">
+                    <template v-if="!isNewGame && gameResult(userSelection, computerSelection) === 'tie'">
+                        <div id="tieMessage" class="resultMessage">
+                            <h3>It's a tie!</h3>
+                            <img src="./images/tie.png" alt="Tie">
                         </div>
                     </template>
                 </div>
-                <!-- Display result -->
-                <template v-if="!isNewGame && gameResult(userSelection, computerSelection) === 'win'">
-                    <div id="winMessage" class="resultMessage">
-                        <h3>You won!</h3>
-                        <img src="./images/happy.png" alt="Happy">
-                    </div>
-                </template>
-                <template v-if="!isNewGame && gameResult(userSelection, computerSelection) === 'lose'">
-                    <div id="loseMessage" class="resultMessage">
-                        <h3>You lost!</h3>
-                        <img src="./images/sad.png" alt="Sad">
-                    </div>
-                </template>
-                <template v-if="!isNewGame && gameResult(userSelection, computerSelection) === 'tie'">
-                    <div id="tieMessage" class="resultMessage">
-                        <h3>It's a tie!</h3>
-                        <img src="./images/tie.png" alt="Tie">
-                    </div>
-                </template>
             </div>
         </div>
     </div>
