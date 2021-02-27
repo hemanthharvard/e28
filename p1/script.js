@@ -77,17 +77,17 @@ const Game = {
         },
         getResultImage() {
             const result = this.gameResult(this.userSelection, this.computerSelection);
-            let image = "Happy";
+            let image = "happy";
 
             switch(result) {
                 case "win":
-                    image = "Happy";
+                    image = "happy";
                     break;
                 case "lose":
-                    image = "Sad";
+                    image = "sad";
                     break;
                 case "tie":
-                    image = "Tie";
+                    image = "tie";
                     break;
             }
 
