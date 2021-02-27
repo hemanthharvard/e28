@@ -21,7 +21,7 @@
                 <div class="selectionItems">
                     <label v-for="(item, index) in gameChoices">
                         <input type="radio" :value="item" name="choice" :checked="index === 0">
-                        {{item}} <img class="selectionImage" :src="'./images/' + item + '.png'" :alt="item">
+                        {{item}} <img class="selectionImage" :src="'./images/' + item.toLowerCase() + '.png'" :alt="item">
                     </label>
                 </div>
                 <div>
@@ -38,13 +38,13 @@
                         <div id="userSelection">
                             <h3>You selected:</h3>
                             <p>{{userSelection}}</p>
-                            <img :src="'./images/' + userSelection + '.png'" :alt="userSelection">
+                            <img :src="'./images/' + userSelection.toLowerCase() + '.png'" :alt="userSelection">
                         </div>
                         <!-- Computer selected message -->
                         <div id="computerSelection">
                             <h3>Computer selected:</h3>
                             <p>{{computerSelection}}</p>
-                            <img :src="'./images/' + computerSelection + '.png'" :alt="computerSelection">
+                            <img :src="'./images/' + computerSelection.toLowerCase() + '.png'" :alt="computerSelection">
                         </div>
                     </div>
                     <!-- Display result -->
