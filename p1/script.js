@@ -142,6 +142,10 @@ const ScoreBoard = {
             type: Number,
             default: 0
         },
+        winner: {
+            type: String,
+            default: ''
+        },
         userSelection: {
             type: String,
             default: ''

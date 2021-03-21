@@ -16,13 +16,17 @@ body {
     flex-wrap: wrap;
 }
 
-.gameSelectionArea {}
+.gameScoreBoardAreaSummary {
+    padding: 10px 0;
+}
+
+.gameScoreBoardAreaResults {
+    margin: 10px 0;
+}
 
 .gamePlayArea {
     width: 60%;
 }
-
-.gameScoreBoardArea {}
 
 .selectionItems {
     display: flex;

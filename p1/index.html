@@ -16,7 +16,7 @@
         <!-- Display game -->
         <div class="gameTemplate">
             <div class="gamePlayArea">
-                <div class="gameSelectionArea">
+                <div>
                     <h1>Let's play Rock, Paper or Scissor!</h1>
                     <h3>Select one:</h3>
                     <div class="selectionItems">
@@ -30,16 +30,28 @@
                         <button v-else @click="resetGame" id="playButton" class="playButton">Try again!</button>
                     </div>
                 </div>
-                <div v-if='scoreBoardRoundsResult.length > 0' class="gameScoreBoardArea">
+                <div v-if='scoreBoardRoundsResult.length > 0'>
                     <fieldset>
                         <legend>Score Board</legend>
+                        <div class="gameScoreBoardAreaSummary">
+                            <div>
+                                Total Rounds: {{scoreBoardRoundsResult.length}}
+                            </div>
+                            <div>
+                                User: {{userScoreBoard}}
+                            </div>
+                            <div>
+                                Computer: {{computerScoreBoard}}
+                            </div>
+                        </div>
                         <score-board
+                            class="gameScoreBoardAreaResults"
                             v-for='scoreBoardRoundResult in scoreBoardRoundsResult'
                             v-bind:key='scoreBoardRoundResult.number'
                             v-bind:number='scoreBoardRoundResult.number'
-                            v-bind:userSelection='scoreBoardRoundResult.userSelection'
-                            v-bind:computerSelection='scoreBoardRoundResult.computerSelection'
-                            v-bind:scoreBoardRoundsResult='scoreBoardRoundsResult'
+                            v-bind:winner='scoreBoardRoundResult.winner'
+                            v-bind:user-selection='scoreBoardRoundResult.userSelection'
+                            v-bind:computer-selection='scoreBoardRoundResult.computerSelection'
                         />
                     </fieldset>
                 </div>
@@ -73,10 +85,13 @@
     </div>
     <!-- TEMPLATE FOR OUR SCORE BOARD COMPONENT -->
     <script type='text/x-template' id='score-board'>
-        <ul>
-            <li>User: {{userSelection}}</li>
-            <li>Computer: {{computerSelection}}</li>
-        </ul>
+        <fieldset>
+            <legend>[{{number}}] Winner: {{winner}}</legend>
+            <ul>
+                <li>User: {{userSelection}}</li>
+                <li>Computer: {{computerSelection}}</li>
+            </ul>
+        </fieldset>
         <!-- <button v-on:click='deleteRound'>Delete from history</button> -->
     </script>
 </body>
