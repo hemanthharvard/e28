@@ -64,3 +64,11 @@ body {
     margin: 1%;
     text-align: center;
 }
+
+.win {
+    color: green;
+}
+
+.lose {
+    color: red;
+}

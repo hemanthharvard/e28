@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <!-- Display result -->
-                    <div :id="gameResult(userSelection, computerSelection)" class="resultMessage">
+                    <div :id="gameResult(userSelection, computerSelection)" :class="gameResult(userSelection, computerSelection)" class="resultMessage">
                         <h3>{{getResultMessage()}}</h3>
                         <img :src="'./images/' + getResultImage() + '.png'" :alt="getResultMessage()">
                     </div>
