@@ -26,12 +26,22 @@
                         </label>
                     </div>
                     <div>
-                        <button v-if="isNewGame" @click="startedNewGame();makeUserSelection();makeComputerSelection();" id="playButton" class="playButton">Play!</button>
+                        <button v-if="isNewGame" @click="playGame();" id="playButton" class="playButton">Play!</button>
                         <button v-else @click="resetGame" id="playButton" class="playButton">Try again!</button>
                     </div>
                 </div>
-                <div class="gameScoreBoardArea">
-                    <score-board />
+                <div v-if='scoreBoardRoundsResult.length > 0' class="gameScoreBoardArea">
+                    <fieldset>
+                        <legend>Score Board</legend>
+                        <score-board
+                            v-for='scoreBoardRoundResult in scoreBoardRoundsResult'
+                            v-bind:key='scoreBoardRoundResult.number'
+                            v-bind:number='scoreBoardRoundResult.number'
+                            v-bind:userSelection='scoreBoardRoundResult.userSelection'
+                            v-bind:computerSelection='scoreBoardRoundResult.computerSelection'
+                            v-bind:scoreBoardRoundsResult='scoreBoardRoundsResult'
+                        />
+                    </fieldset>
                 </div>
             </div>
             <!-- Display results -->
@@ -63,16 +73,11 @@
     </div>
     <!-- TEMPLATE FOR OUR SCORE BOARD COMPONENT -->
     <script type='text/x-template' id='score-board'>
-        <div v-if='!deleted'>
-            <fieldset>
-                <legend>Score Board:</legend>
-                <ul>
-                    <li>Round #: TBD</li>
-                    <li>Winner: TBD</li>
-                </ul>
-            </fieldset>
-            <!-- <button v-on:click='deleteRound'>Delete from history</button> -->
-        </div>
+        <ul>
+            <li>User: {{userSelection}}</li>
+            <li>Computer: {{computerSelection}}</li>
+        </ul>
+        <!-- <button v-on:click='deleteRound'>Delete from history</button> -->
     </script>
 </body>
 </html>

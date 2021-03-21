@@ -7,11 +7,45 @@ const Game = {
             isNewGame: true,
             userSelection: null,
             computerSelection: this.generateComputerSelection(),
+            scoreBoardRoundsResult: [],
+            computerScoreBoard: 0,
+            userScoreBoard: 0
         }
     },
     methods: {
-        startedNewGame() {
+        playGame() {
             this.isNewGame = false;
+            this.makeUserSelection();
+            this.makeComputerSelection();
+            const result = this.gameResult(this.userSelection, this.computerSelection);
+            switch (result) {
+                case 'win':
+                    this.userScoreBoard++;
+                    this.scoreBoardRoundsResult.push({
+                        number: this.scoreBoardRoundsResult.length + 1,
+                        winner: 'User',
+                        userSelection: this.userSelection,
+                        computerSelection: this.computerSelection
+                    });
+                    break;
+                case 'lose':
+                    this.computerScoreBoard++;
+                    this.scoreBoardRoundsResult.push({
+                        number: this.scoreBoardRoundsResult.length + 1,
+                        winner: 'Computer',
+                        userSelection: this.userSelection,
+                        computerSelection: this.computerSelection
+                    });
+                    break;
+                case 'tie':
+                    this.scoreBoardRoundsResult.push({
+                        number: this.scoreBoardRoundsResult.length + 1,
+                        winner: 'Tie',
+                        userSelection: this.userSelection,
+                        computerSelection: this.computerSelection
+                    });
+                    break;
+            }
         },
         resetGame() {
             this.isNewGame = true;
@@ -101,13 +135,27 @@ const ScoreBoard = {
     name: 'ScoreBoard',
     data() {
         return {
-            deleted: false,
+        }
+    },
+    props: {
+        number: {
+            type: Number,
+            default: 0
+        },
+        userSelection: {
+            type: String,
+            default: ''
+        },
+        computerSelection: {
+            type: String,
+            default: ''
+        },
+        scoreBoardRoundsResult: {
+            type: Array,
+            default: []
         }
     },
     methods: {
-        deleteRound() {
-            this.deleted = true
-        }
     },
     template: '#score-board',
 };
