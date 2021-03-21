@@ -9,7 +9,8 @@ const Game = {
             computerSelection: this.generateComputerSelection(),
             scoreBoardRoundsResult: [],
             computerScoreBoard: 0,
-            userScoreBoard: 0
+            userScoreBoard: 0,
+            tieScoreBoard: 0
         }
     },
     methods: {
@@ -38,6 +39,7 @@ const Game = {
                     });
                     break;
                 case 'tie':
+                    this.tieScoreBoard++;
                     this.scoreBoardRoundsResult.push({
                         number: this.scoreBoardRoundsResult.length + 1,
                         winner: 'Tie',
