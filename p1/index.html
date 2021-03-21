@@ -15,18 +15,23 @@
     <div id="app" v-cloak>
         <!-- Display game -->
         <div class="gameTemplate">
-            <div class="gameSelectionArea">
-                <h1>Let's play Rock, Paper or Scissor!</h1>
-                <h3>Select one:</h3>
-                <div class="selectionItems">
-                    <label v-for="(item, index) in gameChoices">
-                        <input type="radio" :value="item" name="choice" :checked="index === 0">
-                        {{item}} <img class="selectionImage" :src="'./images/' + item.toLowerCase() + '.png'" :alt="item">
-                    </label>
+            <div class="gamePlayArea">
+                <div class="gameSelectionArea">
+                    <h1>Let's play Rock, Paper or Scissor!</h1>
+                    <h3>Select one:</h3>
+                    <div class="selectionItems">
+                        <label v-for="(item, index) in gameChoices">
+                            <input type="radio" :value="item" name="choice" :checked="index === 0">
+                            {{item}} <img class="selectionImage" :src="'./images/' + item.toLowerCase() + '.png'" :alt="item">
+                        </label>
+                    </div>
+                    <div>
+                        <button v-if="isNewGame" @click="startedNewGame();makeUserSelection();makeComputerSelection();" id="playButton" class="playButton">Play!</button>
+                        <button v-else @click="resetGame" id="playButton" class="playButton">Try again!</button>
+                    </div>
                 </div>
-                <div>
-                    <button v-if="isNewGame" @click="startedNewGame();makeUserSelection();makeComputerSelection();" id="playButton" class="playButton">Play!</button>
-                    <button v-else @click="resetGame" id="playButton" class="playButton">Try again!</button>
+                <div class="gameScoreBoardArea">
+                    <score-board />
                 </div>
             </div>
             <!-- Display results -->
@@ -56,5 +61,18 @@
             </div>
         </div>
     </div>
+    <!-- TEMPLATE FOR OUR SCORE BOARD COMPONENT -->
+    <script type='text/x-template' id='score-board'>
+        <div v-if='!deleted'>
+            <fieldset>
+                <legend>Score Board:</legend>
+                <ul>
+                    <li>Round #: TBD</li>
+                    <li>Winner: TBD</li>
+                </ul>
+            </fieldset>
+            <!-- <button v-on:click='deleteRound'>Delete from history</button> -->
+        </div>
+    </script>
 </body>
 </html>

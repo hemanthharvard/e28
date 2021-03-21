@@ -16,9 +16,13 @@ body {
     flex-wrap: wrap;
 }
 
-.gameSelectionArea {
+.gameSelectionArea {}
+
+.gamePlayArea {
     width: 60%;
 }
+
+.gameScoreBoardArea {}
 
 .selectionItems {
     display: flex;

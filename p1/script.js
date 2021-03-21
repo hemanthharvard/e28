@@ -96,5 +96,27 @@ const Game = {
     }
 }
 
+// Define the options of the score board component
+const ScoreBoard = {
+    name: 'ScoreBoard',
+    data() {
+        return {
+            deleted: false,
+        }
+    },
+    methods: {
+        deleteRound() {
+            this.deleted = true
+        }
+    },
+    template: '#score-board',
+};
+
 // Create a new Vue instance using our options
-const app = Vue.createApp(Game).mount("#app");
+const app = Vue.createApp(Game);
+
+// Globally register the component with our root Vue instance
+app.component('score-board', ScoreBoard);
+
+// Mount the root Vue instance
+app.mount('#app');
