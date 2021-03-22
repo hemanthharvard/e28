@@ -161,10 +161,6 @@ const ScoreBoard = {
         computerSelection: {
             type: String,
             default: ''
-        },
-        scoreBoardRoundsResult: {
-            type: Array,
-            default: []
         }
     },
     methods: {
