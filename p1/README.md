@@ -1,11 +1,11 @@
 *Any instructions/notes in italics should be removed from the template before submitting* 
 
 # Project 1
-+ By: *your first and last name*
-+ Production URL: <http://e28p1.yourdomain.com>
++ By: Hemanth Kishen Udupi Vedavysa
++ Production URL: <http://e28p1.hemanthkishen.com/>
 
 ## Outside resources
-*your list of outside resources go here*
+- [Vue Guide - Props](https://vuejs.org/v2/guide/components-props.html)
 
 ## Notes for instructor
 *any notes for me to refer to while grading; if none, omit this section*
