@@ -52,6 +52,12 @@ const Game = {
         resetGame() {
             this.isNewGame = true;
         },
+        resetScores() {
+            this.scoreBoardRoundsResult.length = 0;
+            this.userScoreBoard = 0;
+            this.computerScoreBoard = 0;
+            this.tieScoreBoard = 0;
+        },
         makeUserSelection() {
             this.userSelection = document.querySelector('input[name="choice"]:checked').value;
         },

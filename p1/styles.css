@@ -20,6 +20,10 @@ body {
     padding: 10px 0;
 }
 
+.scoreResetButton {
+    margin: 10px 0;
+}
+
 .gameScoreBoardAreaResults {
     margin: 10px 0;
 }

@@ -46,6 +46,7 @@
                             <div>
                                 Tie: {{tieScoreBoard}}
                             </div>
+                            <button @click="resetScores();" id="scoreResetButton" class="scoreResetButton">Reset</button>
                         </div>
                         <score-board
                             class="gameScoreBoardAreaResults"
@@ -95,7 +96,6 @@
                 <li>Computer: {{computerSelection}}</li>
             </ul>
         </fieldset>
-        <!-- <button v-on:click='deleteRound'>Delete from history</button> -->
     </script>
 </body>
 </html>
