@@ -1,6 +1,24 @@
-# Project 2
-+ By: Hemanth Kishen Udupi Vedavysa
-+ Production URL: <a href="http://e28p2.hemanthkishen.com/" target="_blank">http://e28p2.hemanthkishen.com/</a>
+# p2
 
-## Outside resources
-- 
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
