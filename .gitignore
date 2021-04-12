@@ -1,3 +1,4 @@
 .config
 update
 .DS_Store
+api/node_modules/

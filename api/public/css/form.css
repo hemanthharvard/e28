@@ -1,0 +1,77 @@
+body {
+    font-family: "Times New Roman", Times, serif;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+fieldset {
+    border: 3px solid #008000;
+}
+
+legend {
+    color: #FFA500;
+    font-weight: bold;
+}
+
+h1 {
+    color: #FFA500;
+}
+
+.form {
+    padding: 1%;
+}
+
+.orderName {
+    width: 100%;
+}
+
+.orderDescription {
+    width: 100%;
+}
+
+.sectionHeader {
+    font-weight: bold;
+}
+
+.placeOrder {
+    background-color: #FFA500;
+    border: 3px solid #008000;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    margin: 4px 2px;
+}
+
+.updateOrder {
+    background-color: #FFFF00;
+    border: 3px solid #008000;
+    color: #008000;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    margin: 4px 2px;
+}
+
+.deleteOrder {
+    background-color: #FF0000;
+    border: 3px solid #008000;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    margin: 4px 2px;
+}

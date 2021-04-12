@@ -1,0 +1,57 @@
+doctype html
+html(lang='en-US')
+  head
+    link(rel='shortcut icon', href='/static/images/favicon.ico')
+    link(rel='stylesheet', type='text/css', href='/static/css/form.css')
+    title All Orders | Dado Tea Lunch Special
+  body
+    header
+      article
+        h1
+          | Dado Tea Lunch Special
+        h3
+          | All Orders
+        // Menu header
+        p
+          | Monday through Friday
+          br
+          | 				11am - 3pm
+    // Order Information section
+    a(href="/")
+      button.placeOrder Back to Home
+    br
+    br
+    if orders.length > 0
+      each order in orders
+        fieldset
+          legend Order Information
+          p Ordered Created: #{new Date(order.created).toString()}
+          p Ordered Updated: #{new Date(order.updated).toString()}
+          p Order ID: #{order._id}
+          p Order Name: #{order.orderName}
+          if order.orderDescription
+            p Order Description: #{order.orderDescription}
+          p Order Type: #{order.orderType}
+          if order.sandwichName
+            p Sandwich: #{order.sandwichName}
+          if order.breadType
+            p Sandwich Bread: #{order.breadType}
+          if order.snackName
+            p Snacks: #{order.snackName}
+          if order.drinkName
+            p Drink: #{order.drinkName}
+          if order.drinkSize
+            p Drink Size: #{order.drinkSize}
+          div(style='display: flex;flex-direction: row;align-items: center;')
+            a(href=`/orderUpdate/${order._id}`)
+              button.updateOrder Update Order
+            a(href=`/orderDelete/${order._id}`)
+              button.deleteOrder Delete Order
+        br
+        br
+    else
+      b
+        h3
+        | No Records found
+      br
+      br

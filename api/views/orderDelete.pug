@@ -1,0 +1,42 @@
+doctype html
+html(lang='en-US')
+  head
+    link(rel='shortcut icon', href='/static/images/favicon.ico')
+    link(rel='stylesheet', type='text/css', href='/static/css/form.css')
+    title Order Deleted | Dado Tea Lunch Special
+  body
+    header
+      article
+        h1
+          | Dado Tea Lunch Special
+        h3
+          | Order Deleted
+        // Menu header
+        p
+          | Monday through Friday
+          br
+          | 				11am - 3pm
+    // Order Information section
+    a(href="/orders")
+      button.placeOrder Back to All Orders
+    br
+    br
+    each order in orders
+      fieldset
+        legend Order Information
+        if order._id
+          p Order ID: #{order._id}
+        p Order Name: #{order.orderName}
+        if order.orderDescription
+          p Order Description: #{order.orderDescription}
+        p Order Type: #{order.orderType}
+        if order.sandwichName
+          p Sandwich: #{order.sandwichName}
+        if order.breadType
+          p Sandwich Bread: #{order.breadType}
+        if order.snackName
+          p Snacks: #{order.snackName}
+        if order.drinkName
+          p Drink: #{order.drinkName}
+        if order.drinkSize
+          p Drink Size: #{order.drinkSize}

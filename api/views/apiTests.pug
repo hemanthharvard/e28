@@ -1,0 +1,24 @@
+doctype html
+html(lang='en-US')
+  head
+    link(rel='shortcut icon', href='/static/images/favicon.ico')
+    script(src='/static/js/apiUITests.js')
+    title API Tests
+  body(onload="loadTests()")
+    header
+      article
+        h1
+          | Click the Run tests button to run the API tests
+        h3
+          | Please check the developer console to view the logs
+    label Hostname:
+    br
+    input#hostname(value=hostname)
+    br
+    br
+    label Port:
+    br
+    input#port(value=port)
+    br
+    br
+    button#runApiTests Run tests

@@ -1,0 +1,127 @@
+doctype html
+html(lang='en-US')
+  head
+    link(rel='shortcut icon', href='/static/images/favicon.ico')
+    link(rel='stylesheet', type='text/css', href='/static/css/form.css')
+    title Dado Tea Lunch Special
+  body
+    header
+      article
+        h1
+          | Dado Tea Lunch Special
+        // Menu header
+        p
+          | Monday through Friday
+          br
+          | 				11am - 3pm
+          br
+          | 				$9.95 plus tax
+        p
+          | Includes sandwich, snack, and drink.
+    form.form(method='GET', action='/orderConfirmation')
+      // Order Information section
+      fieldset
+        legend Order Information
+        label(for='orderName') Name
+        br
+        input#orderName.orderName(type='text', name='orderName', maxlength='100', required='')
+        br
+        br
+        label(for='orderDescription') Special Requests
+        br
+        input#orderDescription.orderDescription(type='text', name='orderDescription', maxlength='100')
+        br
+        br
+        input#orderTypeHere(type='radio', name='orderType', value='Here', required='')
+        label(for='orderTypeHere') Here
+        br
+        input#orderTypeToGo(type='radio', name='orderType', value='To Go', required='')
+        label(for='orderTypeToGo') To Go
+      br
+      // Sandwich section
+      fieldset
+        legend Sandwiches
+        p.sectionHeader Monday
+        input#sandwichTomatoMozzarella(type='radio', name='sandwichName', value='Tomato Mozzarella')
+        label(for='sandwichTomatoMozzarella') Tomato Mozzarella
+        br
+        input#sandwichChickenSalad(type='radio', name='sandwichName', value='Chicken Salad')
+        label(for='sandwichChickenSalad') Chicken Salad
+        p.sectionHeader Tuesday
+        input#sandwichGreekSaladWrap(type='radio', name='sandwichName', value='Greek Salad Wrap')
+        label(for='sandwichGreekSaladWrap') Greek Salad Wrap
+        br
+        input#sandwichTotoWrap(type='radio', name='sandwichName', value='Toto Wrap')
+        label(for='sandwichTotoWrap') Toto Wrap
+        p.sectionHeader Wednesday
+        input#sandwichRedPepperHummus(type='radio', name='sandwichName', value='Red Pepper Hummus')
+        label(for='sandwichRedPepperHummus') Red Pepper Hummus
+        br
+        input#sandwichRoastedTurkey(type='radio', name='sandwichName', value='Roasted Turkey')
+        label(for='sandwichRoastedTurkey') Roasted Turkey
+        p.sectionHeader Thursday
+        input#sandwichCarrotGingerHummusWrap(type='radio', name='sandwichName', value='Carrot-Ginger Hummus Wrap')
+        label(for='sandwichCarrotGingerHummusWrap') Carrot-Ginger Hummus Wrap
+        br
+        input#sandwichEggSalad(type='radio', name='sandwichName', value='Egg Salad')
+        label(for='sandwichEggSalad') Egg Salad
+        p.sectionHeader Friday
+        input#sandwichDadoWrap(type='radio', name='sandwichName', value='Dado Wrap')
+        label(for='sandwichDadoWrap') Dado Wrap
+        br
+        input#sandwichTunaSalad(type='radio', name='sandwichName', value='Tuna Salad')
+        label(for='sandwichTunaSalad') Tuna Salad
+        br
+        br
+        hr
+        br
+        input#sandwichGlutenFreeBread(type='checkbox', name='breadType', value='Gluten Free Bread')
+        label(for='sandwichGlutenFreeBread') Gluten Free Bread (75¢ extra)
+        br
+      br
+      // Snack section
+      fieldset
+        legend Snack
+        p.sectionHeader Snacks
+        input#snackApple(type='radio', name='snackName', value='Apple')
+        label(for='snackApple') Apple
+        br
+        input#snackBanana(type='radio', name='snackName', value='Banana')
+        label(for='snackBanana') Banana
+        br
+        input#snackPotatoChips(type='radio', name='snackName', value='Potato Chips')
+        label(for='snackPotatoChips') Potato Chips
+      br
+      // Drink section
+      fieldset
+        legend Drink
+        p.sectionHeader Drinks
+        select#drinkType(name='drinkName')
+          optgroup(label='Black Tea')
+            option(value='Hot Black Tea - Keemun') Hot Black Tea - Keemun
+            option(value='Hot Black Tea - Decaf Keemun') Hot Black Tea - Decaf Keemun
+            option(value='Iced Black Tea - Keemun') Iced Black Tea - Keemun
+            option(value='Iced Black Tea - Decaf Keemun') Iced Black Tea - Decaf Keemun
+          optgroup(label='Green Tea')
+            option(value='Hot Green Tea - Sencha') Hot Green Tea - Sencha
+            option(value='Hot Green Tea - Decaf') Hot Green Tea - Decaf
+            option(value='Iced Green Tea - Sencha') Iced Green Tea - Sencha
+            option(value='Iced Green Tea - Decaf') Iced Green Tea - Decaf
+          optgroup(label='Coffee')
+            option(value='Hot Coffee') Hot Coffee
+            option(value='Hot Decaf Coffee') Hot Decaf Coffee
+            option(value='Iced Coffee') Iced Coffee
+            option(value='Iced Decaf Coffee') Iced Decaf Coffee
+          optgroup(label='Bubble Tea ($1.50 extra)')
+            option(value='Bubble Tea') Bubble Tea
+        br
+        br
+        hr
+        br
+        input#drinkLarge(type='checkbox', name='drinkSize', value='Large Drink')
+        label(for='drinkLarge') Large Drink (75¢ extra)
+        br
+      br
+      input.placeOrder(type='submit', value='Place Order')
+    a(href="/" style='padding-left: 1%;')
+      button.placeOrder Go back to Menu
