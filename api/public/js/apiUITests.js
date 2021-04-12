@@ -106,6 +106,6 @@ function loadTests() {
 // Calls our test function when we click the button
 //  afer validating that there's a file selected.
 document.querySelector('#runApiTests').addEventListener("click", ()=>{
-	testAPIs(document.querySelector('#hostname').value, document.querySelector('#port').value);
+	testAPIs(document.querySelector('#hostname').value, document.querySelector('#port').value || 80);
 });
 }
