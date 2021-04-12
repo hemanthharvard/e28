@@ -16,6 +16,11 @@ router.use((req, res, next) => {
 	next();
 });
 
+router.get('/', (req, res, next) => {
+	res.set({'Content-type': 'text/plain'});
+	res.send('It\'s alive!');
+});
+
 router.get('/ping', (req, res, next) => {
 	res.set({'Content-type': 'text/plain'});
 	res.send('pong');
