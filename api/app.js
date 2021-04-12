@@ -32,7 +32,7 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.use('/static', express.static(path.join(__dirname, 'public')));
-app.use('/', routes('order'));
+app.use('/', routes('note'));
 app.use('/data', routes('data'));
 
 // Error handling

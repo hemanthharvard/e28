@@ -3,12 +3,12 @@ const models = require('../models');
 
 class DataService {
 
-	static listOrder(id) {
+	static listNote(id) {
 		return new Promise((resolve, reject) => {
-			const Order = models('order');
-			Order.find({_id: id}).exec((err, docs) => {
+			const Notes = models('notes');
+			Notes.find({_id: id}).exec((err, docs) => {
 				if (err) {
-					// logger.error(`Failed to retrieve order: ${id}`, err.message);
+					// logger.error(`Failed to retrieve note: ${id}`, err.message);
 					reject (new Error(err.message));
 				}
 				else {
@@ -31,12 +31,12 @@ class DataService {
 		});
 	}
 
-	static listOrders() {
+	static listNotes() {
 		return new Promise((resolve, reject) => {
-			const Order = models('order');
-			Order.find().sort({updated: 'descending'}).exec((err, docs) => {
+			const Notes = models('notes');
+			Notes.find().sort({updated: 'descending'}).exec((err, docs) => {
 				if (err) {
-					// logger.error('Failed to retrieve orders: ', err.message);
+					// logger.error('Failed to retrieve notes: ', err.message);
 					reject (new Error(err.message));
 				}
 				else {
@@ -50,47 +50,47 @@ class DataService {
 		});
 	}
   
-	static newOrder(data) {
+	static newNote(data) {
 		return new Promise((resolve, reject) => {
-			const Order = models('order');
-			const newOrder = new Order(data);
-			newOrder.save((err) => {
+			const Notes = models('notes');
+			const newNotes = new Notes(data);
+			newNotes.save((err) => {
 				if (err) {
-					// logger.error('Failed to save new order: ', err.message);
+					// logger.error('Failed to save new note: ', err.message);
 					reject (new Error(err.message));
 				}
 				else {
 					resolve ({
 						status: 'success',
 						statusCode: 200,
-						data: newOrder
+						data: newNotes
 					});
 				}
 			})
 		});
 	}
 
-	static updateOrder(id, data) {
+	static updateNote(id, data) {
 		return new Promise((resolve, reject) => {
-			const Order = models('order');
-			Order.findById({_id: id}).exec((err, retrievedOrder) => {
+			const Notes = models('notes');
+			Notes.findById({_id: id}).exec((err, retrievedNotes) => {
 				if (err) {
-					// logger.error(`Failed to fetch order number: ${id}`, err.message);
+					// logger.error(`Failed to fetch note number: ${id}`, err.message);
 					reject (new Error(err.message));
 				}
 				else {
-					if (retrievedOrder) {
-						retrievedOrder.set(data);
-						retrievedOrder.save((err) => {
+					if (retrievedNotes) {
+						retrievedNotes.set(data);
+						retrievedNotes.save((err) => {
 							if (err) {
-								// logger.error(`Failed to update order number: ${id}`, err.message);
+								// logger.error(`Failed to update note number: ${id}`, err.message);
 								reject (new Error(err.message));
 							}
 							else {
 								resolve ({
 									status: 'success',
 									statusCode: 200,
-									message: `success updating Order Number: ${id}`
+									message: `success updating Notes Number: ${id}`
 								});
 							}
 						});
@@ -99,7 +99,7 @@ class DataService {
 						resolve ({
 							status: 'failed',
 							statusCode: 404,
-							message: `Order Number: ${id} not found`
+							message: `Notes Number: ${id} not found`
 						});
 					}
 				}
@@ -107,27 +107,27 @@ class DataService {
 		});
 	}
 
-	static deleteOrder(id) {
+	static deleteNote(id) {
 
 		return new Promise((resolve, reject) => {
-			const Order = models('order');
-			Order.findById({_id: id}).exec((err, retrievedOrder) => {
+			const Notes = models('notes');
+			Notes.findById({_id: id}).exec((err, retrievedNotes) => {
 				if (err) {
-					// logger.error(`Failed to fetch order number: ${id}`, err.message);
+					// logger.error(`Failed to fetch note number: ${id}`, err.message);
 					reject (new Error(err.message));
 				}
 				else {
-					if (retrievedOrder) {
-						Order.deleteOne({_id: id}).exec((err) => {
+					if (retrievedNotes) {
+						Notes.deleteOne({_id: id}).exec((err) => {
 							if (err) {
-								// logger.error(`Failed to remove order number: ${id}`, err.message);
+								// logger.error(`Failed to remove note number: ${id}`, err.message);
 								reject (new Error(err.message));
 							}
 							else {
 								resolve ({
 									status: 'success',
 									statusCode: 200,
-									message: `success deleting Order Number: ${id}`
+									message: `success deleting Notes Number: ${id}`
 								});
 							}
 						});
@@ -136,7 +136,7 @@ class DataService {
 						resolve ({
 							status: 'failed',
 							statusCode: 404,
-							message: `Order Number: ${id} not found`
+							message: `Notes Number: ${id} not found`
 						});
 					}
 				}
@@ -145,19 +145,19 @@ class DataService {
 
 	}
 
-	static deleteOrders() {
+	static deleteNotes() {
 		return new Promise((resolve, reject) => {
-			const Order = models('order');
-			Order.deleteMany().exec((err, docs) => {
+			const Notes = models('notes');
+			Notes.deleteMany().exec((err, docs) => {
 				if (err) {
-					// logger.error(`Failed to remove all orders: `, err.message);
+					// logger.error(`Failed to remove all notes: `, err.message);
 					reject (new Error(err.message));
 				}
 				else {
 					resolve ({
 						status: 'success',
 						statusCode: 200,
-						message: 'success deleting all orders'
+						message: 'success deleting all notes'
 					});
 				}
 			});

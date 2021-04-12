@@ -21,13 +21,13 @@ router.get('/ping', (req, res, next) => {
 	res.send('pong');
 });
 
-router.get('/listOrder/:id', async(req, res, next) => {
+router.get('/note/:id', async(req, res, next) => {
 
 	res.set({'Content-type': 'application/json'});
 
 	if (req.params.id) {
 		try {
-			const data = await DataService.listOrder(req.params.id);
+			const data = await DataService.listNote(req.params.id);
 			res.statusCode = data.statusCode;
 			res.send(data);
 		}
@@ -49,12 +49,12 @@ router.get('/listOrder/:id', async(req, res, next) => {
 	
 });
 
-router.get('/listOrders', async(req, res, next) => {
+router.get('/notes', async(req, res, next) => {
 	
 	res.set({'Content-type': 'application/json'});
 
 	try {
-		const data = await DataService.listOrders();
+		const data = await DataService.listNotes();
 		res.statusCode = data.statusCode;
 		res.send(data);
 	}
@@ -68,17 +68,17 @@ router.get('/listOrders', async(req, res, next) => {
 
 });
 
-router.post('/newOrder', async(req, res, next) => {
+router.post('/newNote', async(req, res, next) => {
 
 	res.set({'Content-type': 'application/json'});
 
 	try {
-		const data = await DataService.newOrder(req.body);
+		const data = await DataService.newNote(req.body);
 		res.statusCode = data.statusCode;
 		res.send(data);
 	}
 	catch (err) {
-		if (err.message.startsWith('order validation failed')) {
+		if (err.message.startsWith('note validation failed')) {
 			res.statusCode = 400;
 			res.send({
 				status: 'failed',
@@ -96,18 +96,18 @@ router.post('/newOrder', async(req, res, next) => {
 
 });
 
-router.put('/updateOrder/:id', async(req, res, next) => {
+router.put('/updateNote/:id', async(req, res, next) => {
 
 	res.set({'Content-type': 'application/json'});
 
 	if (req.params.id) {
 		try {
-			const data = await DataService.updateOrder(req.params.id, req.body);
+			const data = await DataService.updateNote(req.params.id, req.body);
 			res.statusCode = data.statusCode;
 			res.send(data);
 		}
 		catch (err) {
-			if (err.message.startsWith('order validation failed')) {
+			if (err.message.startsWith('note validation failed')) {
 				res.statusCode = 400;
 				res.send({
 					status: 'failed',
@@ -133,13 +133,13 @@ router.put('/updateOrder/:id', async(req, res, next) => {
 
 });
 
-router.delete('/deleteOrder/:id', async(req, res, next) => {
+router.delete('/deleteNote/:id', async(req, res, next) => {
 
 	res.set({'Content-type': 'application/json'});
 
 	if (req.params.id) {
 		try {
-			const data = await DataService.deleteOrder(req.params.id);
+			const data = await DataService.deleteNote(req.params.id);
 			res.statusCode = data.statusCode;
 			res.send(data);
 		}
@@ -160,12 +160,12 @@ router.delete('/deleteOrder/:id', async(req, res, next) => {
 	}
 });
 
-router.delete('/deleteAllOrders', async(req, res, next) => {
+router.delete('/deleteAllNotes', async(req, res, next) => {
 
 	res.set({'Content-type': 'application/json'});
 
 	try {
-		const data = await DataService.deleteOrders();
+		const data = await DataService.deleteNotes();
 		res.statusCode = data.statusCode;
 		res.send(data);
 	}
