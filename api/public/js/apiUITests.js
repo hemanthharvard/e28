@@ -8,73 +8,57 @@ function testAPIs(inputHostname, inputPort) {
 		baseURL = `http://${inputHostname}:${inputPort}`;
 	}
 
-	let newOrderId = '';
-	const newOrder = {
-		'orderName': 'Order created for test',
-		'orderDescription': 'Touch Free Delivery',
-		'orderType': 'To Go',
-		'sandwichName': 'Tomato Mozzarella',
-		'breadType': 'Gluten Free Bread',
-		'snackName': 'Apple',
-		'drinkName': 'Hot Coffee',
-		'drinkSize': 'Large Drink',
-		'created': new Date,
-		'updated': new Date
+	let newNoteId = '';
+	const newNote = {
+		'title': 'newTitle',
+		'content': 'newContent'
 	};
 
 	// ping
-	callAPI(baseURL, 'POST', '/data/newOrder', null, newOrder)
+	callAPI(baseURL, 'POST', '/data/newNote', null, newNote)
 	.then((list)=>{
-		console.log('\n\n***************************\nnew order:');
+		console.log('\n\n***************************\nnew note:');
 		console.log(list);
-		newOrderId = list.data._id;
+		newNoteId = list.data._id;
 
-		const updatedOrder = {
-			'orderId': newOrderId,
-			'orderName': 'Updated Order',
-			'orderDescription': 'Touch Free Delivery',
-			'orderType': 'Here',
-			'sandwichName': 'Tomato Mozzarella',
-			'breadType': 'Gluten Free Bread',
-			'snackName': 'Banana',
-			'drinkName': 'Hot Coffee',
-			'drinkSize': 'Large Drink',
-			'updated': new Date
+		const updatedNote = {
+			'title': 'updatedTitle',
+			'content': 'updatedContent'
 		};
 
-		callAPI(baseURL, 'PUT', `/data/updateOrder/${newOrderId}`, null, updatedOrder)
+		callAPI(baseURL, 'PUT', `/data/updateNote/${newNoteId}`, null, updatedNote)
 		.then((list)=>{
-			console.log('\n\n***************************\nupdated order:');
+			console.log('\n\n***************************\nupdated note:');
 			console.log(list);
 
-			callAPI(baseURL, 'GET', `/data/listOrder/${newOrderId}`, null, null)
+			callAPI(baseURL, 'GET', `/data/listNote/${newNoteId}`, null, null)
 			.then((list)=>{
-				console.log('\n\n***************************\nfetch updated order:');
+				console.log('\n\n***************************\nfetch updated note:');
 				console.log(list);
 
-				callAPI(baseURL, 'GET', '/data/listOrders', null, null)
+				callAPI(baseURL, 'GET', '/data/listNotes', null, null)
 				.then((list)=>{
-					console.log('\n\n***************************\nfetch all orders:');
+					console.log('\n\n***************************\nfetch all notes:');
 					console.log(list);
 
-					callAPI(baseURL, 'DELETE', `/data/deleteOrder/${newOrderId}`, null, null)
+					callAPI(baseURL, 'DELETE', `/data/deleteNote/${newNoteId}`, null, null)
 					.then((list)=>{
-						console.log('\n\n***************************\ndelete the recently created order:');
+						console.log('\n\n***************************\ndelete the recently created note:');
 						console.log(list);
 
-						callAPI(baseURL, 'DELETE', '/data/deleteAllOrders', null, null)
+						callAPI(baseURL, 'DELETE', '/data/deleteAllNotes', null, null)
 						.then((list)=>{
-							console.log('\n\n***************************\ndelete all the orders:');
+							console.log('\n\n***************************\ndelete all the notes:');
 							console.log(list);
 
-							callAPI(baseURL, 'GET', `/data/listOrder/${newOrderId}`, null, null)
+							callAPI(baseURL, 'GET', `/data/listNote/${newNoteId}`, null, null)
 							.then((list)=>{
-								console.log('\n\n***************************\nfetch unexisting order:');
+								console.log('\n\n***************************\nfetch unexisting note:');
 								console.log(list);
 
-								callAPI(baseURL, 'DELETE', `/data/deleteOrder/${newOrderId}`, null, null)
+								callAPI(baseURL, 'DELETE', `/data/deleteNote/${newNoteId}`, null, null)
 								.then((list)=>{
-									console.log('\n\n***************************\ndelete unexisting order:');
+									console.log('\n\n***************************\ndelete unexisting note:');
 									console.log(list);
 								});
 							});
