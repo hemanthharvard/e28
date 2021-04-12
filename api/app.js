@@ -9,7 +9,7 @@ const routes = require('./routes');
 const app = express();
 
 // Load any undefined ENV variables form a specified file.
-env(__dirname + '/.env');
+// env(__dirname + '/.env');
 
 // Connect to the database
 mongoose.connect(`mongodb+srv://${process.env.harvardDbUsername}:${process.env.harvardDbPassword}@cluster0-kgyed.mongodb.net/cscie31-assignment-5?retryWrites=true&w=majority`,
