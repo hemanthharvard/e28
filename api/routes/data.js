@@ -21,7 +21,7 @@ router.get('/ping', (req, res, next) => {
 	res.send('pong');
 });
 
-router.get('/note/:id', async(req, res, next) => {
+router.get('/listNote/:id', async(req, res, next) => {
 
 	res.set({'Content-type': 'application/json'});
 
@@ -49,7 +49,7 @@ router.get('/note/:id', async(req, res, next) => {
 	
 });
 
-router.get('/notes', async(req, res, next) => {
+router.get('/listNotes', async(req, res, next) => {
 	
 	res.set({'Content-type': 'application/json'});
 

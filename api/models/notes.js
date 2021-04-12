@@ -8,7 +8,8 @@ const notesSchema = new Schema({
     'content': String,
 },
 {
-    strict: true
+    strict: true,
+    timestamps: true
 });
 
 const Notes = mongoose.model('notes', notesSchema);

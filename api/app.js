@@ -12,7 +12,7 @@ const app = express();
 // env(__dirname + '/.env');
 
 // Connect to the database
-mongoose.connect(`mongodb+srv://${process.env.harvardDbUsername}:${process.env.harvardDbPassword}@cluster0-kgyed.mongodb.net/cscie31-assignment-5?retryWrites=true&w=majority`,
+mongoose.connect(`mongodb+srv://${process.env.harvardDbUsername}:${process.env.harvardDbPassword}@cluster0-kgyed.mongodb.net/e28-project?retryWrites=true&w=majority`,
 {	
 	useNewUrlParser: true,
 	useUnifiedTopology: true
