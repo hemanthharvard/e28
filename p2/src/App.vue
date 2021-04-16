@@ -9,8 +9,8 @@
             v-for="link in links"
             v-bind:key="link"
             v-bind:to="paths[link]"
-            >{{ link }}</router-link
-          >
+            >{{ link }}
+          </router-link>
         </li>
       </ul>
     </nav>
