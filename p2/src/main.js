@@ -1,4 +1,20 @@
 import { createApp } from 'vue'
-import App from './App.vue'
+import { createRouter, createWebHistory } from 'vue-router';
 
-createApp(App).mount('#app')
+import App from './App.vue'
+import HomePage from '@/components/pages/HomePage.vue';
+import FavouritesPage from '@/components/pages/FavouritesPage.vue';
+import CreateNewNotePage from '@/components/pages/CreateNewNotePage.vue';
+import NoteDetailPage from '@/components/pages/NoteDetailPage.vue';
+
+const router = createRouter({
+    history: createWebHistory(),
+    routes: [
+        { path: '/', component: HomePage },
+        { path: '/favourites', component: FavouritesPage },
+        { path: '/note/new', component: CreateNewNotePage },
+        { path: '/note/:id', component: NoteDetailPage, props: true },
+    ]
+});
+
+createApp(App).use(router).mount('#app');
