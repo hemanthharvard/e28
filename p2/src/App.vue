@@ -1,7 +1,11 @@
 <template>
-  <div>
-    <img alt="Note Keeper" id="logo" src="@/assets/images/note-keeper.png" />
-
+  <div class="navbar">
+    <img
+      alt="Note Keeper"
+      id="logo"
+      class="logo"
+      src="@/assets/images/note-keeper.png"
+    />
     <nav>
       <ul>
         <li>

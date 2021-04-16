@@ -1,0 +1,16 @@
+.navbar {
+    color: green;
+}
+
+.navbar>.logo {
+    height: 100px;
+    width: 100px;
+}
+
+.navbar>nav>ul {
+    list-style: none;
+}
+
+.navbar>nav>ul>li>a {
+    padding: 5%;
+}
