@@ -1,16 +1,44 @@
 .navbar {
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-header {
+    display: flex;
+    flex-direction: row;
     color: green;
 }
 
-.navbar>.logo {
-    height: 100px;
-    width: 100px;
+.navbar>div>.logo {
+    height: 80px;
+    width: 80px;
+}
+
+.navbar>nav {
+    width: 100%;
 }
 
 .navbar>nav>ul {
     list-style: none;
 }
 
+.navbar>nav>ul>li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 .navbar>nav>ul>li>a {
+    text-decoration: none;
     padding: 5%;
+}
+
+.navbar>nav>ul>li>a:link,
+.navbar>nav>ul>li>a:visited {
+    background-color: #f44336;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
 }
