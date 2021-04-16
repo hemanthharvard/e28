@@ -37,8 +37,8 @@ export default {
       /* Map links to  the appropriate component */
       paths: {
         home: "/",
-        products: "/notes",
-        "new note": "/note/new",
+        favourites: "/favourites",
+        "new note": "/new",
       },
     };
   },
@@ -47,8 +47,8 @@ export default {
   },
   methods: {
     loadNotes() {
-      axios.get("note").then((response) => {
-        this.notes = response.data.note;
+      axios.get("listNotes").then((response) => {
+        this.notes = response.data.data;
       });
     },
   },

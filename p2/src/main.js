@@ -12,8 +12,8 @@ const router = createRouter({
     routes: [
         { path: '/', component: HomePage },
         { path: '/favourites', component: FavouritesPage },
-        { path: '/note/new', component: CreateNewNotePage },
-        { path: '/note/:id', component: NoteDetailPage, props: true },
+        { path: '/new', component: CreateNewNotePage },
+        { path: '/:id', component: NoteDetailPage, props: true },
     ]
 });
 
