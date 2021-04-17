@@ -32,7 +32,10 @@
       <label for="favorite">Favorite</label>
     </div>
     <div class="button-wrapper">
-      <button class="button" @click="handleClick">
+      <button class="delete-button" @click="handleDeleteClick" v-if="editMode">
+        Delete
+      </button>
+      <button class="edit-button" @click="handleEditClick">
         {{ editMode ? "Done" : "Edit" }}
       </button>
     </div>
@@ -43,11 +46,14 @@
 export default {
   name: "NoteCard",
   methods: {
-    handleClick: function () {
+    handleEditClick: function () {
       this.editMode = !this.editMode;
       if (!this.editMode) {
         this.parentToUpdateNotes();
       }
+    },
+    handleDeleteClick: function () {
+      this.parentToUpdateNotes();
     },
     parentToUpdateNotes: function () {
       this.$emit("updateNotes");
@@ -110,10 +116,10 @@ export default {
 .button-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-around;
   padding-top: 14px;
 }
-.button {
+.edit-button {
   border: none;
   border-radius: 5px;
   color: white;
@@ -128,8 +134,22 @@ export default {
   color: black;
   border: 2px solid #4caf50;
 }
-.button:hover {
+.edit-button:hover {
   background-color: #4caf50;
   color: white;
+}
+.delete-button {
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: #ff0000;
+  color: black;
 }
 </style>
