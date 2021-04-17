@@ -55,6 +55,5 @@ export default {
 <style>
 #description {
   font-size: 18px;
-  padding-bottom: 3%;
 }
 </style>
