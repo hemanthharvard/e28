@@ -116,7 +116,7 @@ export default {
 .button-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: flex-end;
   padding-top: 14px;
 }
 .edit-button {
