@@ -3,10 +3,11 @@
     flex-direction: row;
 }
 
-.navbar-header {
+.navbar-logo {
     display: flex;
     flex-direction: row;
     color: green;
+    width: 25%;
 }
 
 .navbar>div>.logo {
@@ -14,8 +15,8 @@
     width: 80px;
 }
 
-.navbar>nav {
-    width: 100%;
+.navbar-contents {
+    width: 75%;
 }
 
 .navbar>nav>ul {

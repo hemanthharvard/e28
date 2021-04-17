@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="navbar">
-      <div class="navbar-header">
+      <div class="navbar-logo">
         <img
           alt="Note Keeper"
           id="logo"
@@ -10,7 +10,7 @@
         />
         <h1>Note Keeper</h1>
       </div>
-      <nav>
+      <nav class="navbar-contents">
         <ul>
           <li>
             <router-link
