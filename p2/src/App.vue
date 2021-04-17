@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { axios } from "@/common/app.js";
+import { default as axios } from "@/common/app.js";
 
 export default {
   name: "App",
@@ -58,10 +58,9 @@ export default {
     this.loadNotes();
   },
   methods: {
-    loadNotes() {
-      axios.get("listNotes").then((response) => {
-        this.notes = response.data.data;
-      });
+    async loadNotes() {
+      const response = await axios.get("listNotes");
+      this.notes = response.data ? response.data.data : [];
     },
   },
 };
