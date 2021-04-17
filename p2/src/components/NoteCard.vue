@@ -50,6 +50,9 @@ export default {
     updateCard: async function (data) {
       await axios.put(`updateNote/${this.note._id}`, data);
     },
+    deleteCard: async function () {
+      await axios.delete(`deleteNote/${this.note._id}`);
+    },
     handleEditClick: function () {
       this.editMode = !this.editMode;
       if (!this.editMode) {
@@ -63,7 +66,8 @@ export default {
       }
     },
     handleDeleteClick: function () {
-      this.parentToUpdateNotes();
+      this.deleteCard();
+      setTimeout(() => this.parentToUpdateNotes(), 1000);
     },
     parentToUpdateNotes: function () {
       this.$emit("updateNotes");

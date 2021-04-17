@@ -24,6 +24,7 @@ class Axios {
         }
 
     }
+
     async put(endpointName, data) {
         try {
             const response = await this.axios.put(endpointName, data);
@@ -40,6 +41,7 @@ class Axios {
         }
 
     }
+
     async post(endpointName, data) {
         try {
             const response = await this.axios.post(endpointName, data);
@@ -52,6 +54,22 @@ class Axios {
             return response;
         } catch (error) {
             console.error('Axios post failed: ', error);
+            return {};
+        }
+    }
+
+    async delete(endpointName) {
+        try {
+            const response = await this.axios.delete(endpointName);
+            if (response.status && response.status >= 300) {
+                throw ({
+                    status: response.status,
+                    statusCode: response.statusCode
+                })
+            }
+            return response;
+        } catch (error) {
+            console.error('Axios delete failed: ', error);
             return {};
         }
 
