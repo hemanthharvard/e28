@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="navbar">
-      <div class="navbar-logo">
+      <a class="navbar-logo" href="/">
         <img
           alt="Note Keeper"
           id="logo"
@@ -9,7 +9,7 @@
           src="@/assets/images/note-keeper.png"
         />
         <h1>Note Keeper</h1>
-      </div>
+      </a>
       <nav class="navbar-contents">
         <ul>
           <li>
@@ -23,6 +23,7 @@
         </ul>
       </nav>
     </div>
+
     <router-view
       v-bind:notes="notes"
       v-on:update-notes="loadNotes"

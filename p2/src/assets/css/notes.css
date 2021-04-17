@@ -14,10 +14,11 @@
     display: flex;
     flex-direction: row;
     color: green;
-    width: 25%;
+    text-decoration: none;
+    width: 20%;
 }
 
-.navbar>div>.logo {
+.logo {
     height: 80px;
     width: 80px;
 }
