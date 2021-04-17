@@ -72,7 +72,6 @@ export default {
 <style>
 #description {
   font-size: 18px;
-  text-align: center;
   padding-bottom: 3%;
 }
 </style>
