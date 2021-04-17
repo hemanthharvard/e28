@@ -41,6 +41,7 @@
 
 <script>
 export default {
+  name: "NoteCard",
   methods: {
     handleClick: function () {
       this.editMode = !this.editMode;

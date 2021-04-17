@@ -8,7 +8,7 @@ import {
 
 import App from './App.vue'
 import HomePage from '@/components/pages/HomePage.vue';
-import FavouritesPage from '@/components/pages/FavouritesPage.vue';
+import FavoritesPage from '@/components/pages/FavoritesPage.vue';
 import CreateNewNotePage from '@/components/pages/CreateNewNotePage.vue';
 import NoteDetailPage from '@/components/pages/NoteDetailPage.vue';
 
@@ -20,7 +20,7 @@ const router = createRouter({
         },
         {
             path: '/favourites',
-            component: FavouritesPage,
+            component: FavoritesPage,
         },
         {
             path: '/new',

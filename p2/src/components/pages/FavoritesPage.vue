@@ -12,6 +12,7 @@
 import { default as axios } from "@/common/app.js";
 import NoteCard from "@/components/NoteCard.vue";
 export default {
+  name: "FavoritesPage",
   data() {
     return {
       filteredNotes: [],
