@@ -44,6 +44,7 @@ export default {
   width: 30%;
 }
 #description {
+  font-size: 20px;
   text-align: center;
   padding-bottom: 3%;
 }
