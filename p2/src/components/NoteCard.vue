@@ -33,7 +33,7 @@
     </div>
     <div class="button-wrapper">
       <button class="delete-button" @click="handleDeleteClick" v-if="editMode">
-        Delete
+        {{ isDeleting ? "Deleting..." : "Delete" }}
       </button>
       <button class="edit-button" @click="handleEditClick">
         {{ editMode ? "Done" : "Edit" }}
@@ -66,6 +66,7 @@ export default {
       }
     },
     handleDeleteClick: function () {
+      this.isDeleting = !this.isDeleting;
       this.deleteCard();
       setTimeout(() => this.parentToUpdateNotes(), 1000);
     },
@@ -76,6 +77,7 @@ export default {
   data() {
     return {
       editMode: false,
+      isDeleting: false,
     };
   },
   props: {
