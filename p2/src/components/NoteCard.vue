@@ -21,13 +21,20 @@
       <p>{{ note.content }}</p>
     </div>
     <div class="button-wrapper">
-      <button class="button">{{ editMode ? "Done" : "Edit" }}</button>
+      <button class="button" @click="handleClick">
+        {{ editMode ? "Done" : "Edit" }}
+      </button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  methods: {
+    handleClick: function () {
+      this.editMode = !this.editMode;
+    },
+  },
   data() {
     return {
       editMode: false,
@@ -48,7 +55,7 @@ export default {
   border-style: solid;
   border-radius: 5px;
   cursor: pointer;
-  padding: 10%;
+  padding: 5%;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   transition: box-shadow 0.3s ease-in-out;
 }
