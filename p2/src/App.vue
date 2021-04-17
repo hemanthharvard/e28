@@ -22,6 +22,9 @@
           </li>
         </ul>
       </nav>
+      <p id="description">
+        Note Keeper is your one-stop shop for all your note keeping needs.
+      </p>
     </div>
 
     <router-view
@@ -67,4 +70,9 @@ export default {
 <style src='@/assets/css/notes.css'></style>
 
 <style>
+#description {
+  font-size: 18px;
+  text-align: center;
+  padding-bottom: 3%;
+}
 </style>
