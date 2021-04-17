@@ -12,7 +12,7 @@
       <textarea
         id="content"
         name="content"
-        rows="4"
+        rows="6"
         cols="30"
         :value="note.content"
         maxlength="200"
@@ -87,12 +87,16 @@ export default {
   font-weight: bold;
 }
 #title {
+  border-color: blue;
+  border-radius: 5px;
   width: 100%;
 }
 .content {
   padding: 5px;
 }
 #content {
+  border-color: blue;
+  border-radius: 5px;
   resize: none;
   width: 100%;
 }
