@@ -2,7 +2,6 @@
   <div id="favourites-page">
     <ul>
       <li v-for="note in filteredNotes" :key="note._id">
-        {{ filteredNotes }}
         <note-card :label="note.title" v-bind:note="note"></note-card>
       </li>
     </ul>
@@ -10,26 +9,28 @@
 </template>
 
 <script>
+import { default as axios } from "@/common/app.js";
 import NoteCard from "@/components/NoteCard.vue";
 export default {
   data() {
     return {
-      filteredNotes: this.notes.filter((note) => {
-        if (note.isFavourite) {
-          console.log(note);
-          return true;
-        }
-      }),
+      filteredNotes: [],
     };
   },
-  props: {
-    notes: {
-      type: Array,
-      default: null,
-    },
+  async mounted() {
+    const notes = await this.loadNotes();
+    this.filteredNotes = notes.filter((note) => {
+      return note.isFavorite;
+    });
   },
   components: {
     "note-card": NoteCard,
+  },
+  methods: {
+    async loadNotes() {
+      const response = await axios.get("listNotes");
+      return response.data ? response.data.data : [];
+    },
   },
 };
 </script>

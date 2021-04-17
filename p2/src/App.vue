@@ -27,22 +27,15 @@
       Note Keeper is your one-stop shop for all your note keeping needs.
     </p>
 
-    <router-view
-      v-bind:notes="notes"
-      v-on:update-notes="loadNotes"
-    ></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import { default as axios } from "@/common/app.js";
-
 export default {
   name: "App",
   data() {
     return {
-      notes: [],
-
       /* Store links in an array to maintain order */
       links: ["Home", "Favourites", "Create new note"],
 
@@ -53,15 +46,6 @@ export default {
         "Create new note": "/new",
       },
     };
-  },
-  mounted() {
-    this.loadNotes();
-  },
-  methods: {
-    async loadNotes() {
-      const response = await axios.get("listNotes");
-      this.notes = response.data ? response.data.data : [];
-    },
   },
 };
 </script>

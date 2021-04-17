@@ -17,12 +17,10 @@ const router = createRouter({
     routes: [{
             path: '/',
             component: HomePage,
-            props: true
         },
         {
             path: '/favourites',
             component: FavouritesPage,
-            props: true
         },
         {
             path: '/new',

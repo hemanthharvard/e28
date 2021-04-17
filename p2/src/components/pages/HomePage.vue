@@ -9,16 +9,25 @@
 </template>
 
 <script>
+import { default as axios } from "@/common/app.js";
 import NoteCard from "@/components/NoteCard.vue";
 export default {
-  props: {
-    notes: {
-      type: Array,
-      default: null,
-    },
+  data() {
+    return {
+      notes: [],
+    };
+  },
+  async mounted() {
+    this.notes = await this.loadNotes();
   },
   components: {
     "note-card": NoteCard,
+  },
+  methods: {
+    async loadNotes() {
+      const response = await axios.get("listNotes");
+      return response.data ? response.data.data : [];
+    },
   },
 };
 </script>
