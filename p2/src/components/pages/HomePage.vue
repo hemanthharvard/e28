@@ -1,11 +1,18 @@
 <template>
   <div id="home-page">
-    <p>Note Keeper is your one-stop shop for all your note keeping needs.</p>
-    <show-featured v-bind:notes="notes"></show-featured>
+    <p id="description">
+      Note Keeper is your one-stop shop for all your note keeping needs.
+    </p>
+    <ul>
+      <li v-for="note in notes" :key="note._id">
+        <note-card :label="note.title" v-bind:note="note"></note-card>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
+import NoteCard from "@/components/NoteCard.vue";
 export default {
   props: {
     notes: {
@@ -13,8 +20,31 @@ export default {
       default: null,
     },
   },
+  components: {
+    "note-card": NoteCard,
+  },
 };
 </script>
 
-<style>
+<style scoped>
+#home-page {
+  padding: 2%;
+}
+#home-page > ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  list-style: none;
+}
+#home-page > ul > li {
+  padding: 2%;
+  min-width: 300px;
+  height: 30%;
+  width: 30%;
+}
+#description {
+  text-align: center;
+  padding-bottom: 3%;
+}
 </style>
