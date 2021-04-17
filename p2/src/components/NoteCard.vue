@@ -33,7 +33,7 @@
     </div>
     <div class="button-wrapper">
       <button class="delete-button" @click="handleDeleteClick" v-if="editMode">
-        {{ isDeleting ? "Deleting..." : "Delete" }}
+        Delete
       </button>
       <button class="edit-button" @click="handleEditClick">
         {{ editMode ? "Done" : "Edit" }}
@@ -54,8 +54,7 @@ export default {
       await axios.delete(`deleteNote/${this.note._id}`);
     },
     handleEditClick: function () {
-      this.editMode = !this.editMode;
-      if (!this.editMode) {
+      if (this.editMode) {
         const data = {
           title: "updatedTitle",
           content: "updatedContent",
@@ -64,9 +63,10 @@ export default {
         this.updateCard(data);
         setTimeout(() => this.parentToUpdateNotes(), 1000);
       }
+      this.editMode = !this.editMode;
     },
     handleDeleteClick: function () {
-      this.isDeleting = !this.isDeleting;
+      this.editMode = !this.editMode;
       this.deleteCard();
       setTimeout(() => this.parentToUpdateNotes(), 1000);
     },
@@ -77,7 +77,6 @@ export default {
   data() {
     return {
       editMode: false,
-      isDeleting: false,
     };
   },
   props: {
