@@ -133,6 +133,7 @@ export default {
   background-color: #ffdf00;
   color: black;
   border: 2px solid #4caf50;
+  margin-left: 5%;
 }
 .edit-button:hover {
   background-color: #4caf50;
