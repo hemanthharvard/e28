@@ -1,5 +1,7 @@
 <template>
   <div id="note-card">
+    <div class="star" v-if="!editMode && note.isFavorite">&#9733;</div>
+    <div class="star" v-if="!editMode && !note.isFavorite">&#9734;</div>
     <div class="title" v-if="editMode">
       <input type="text" id="title" name="title" :value="note.title" />
     </div>
@@ -19,6 +21,15 @@
     </div>
     <div class="content" v-else>
       <p>{{ note.content }}</p>
+    </div>
+    <div v-if="editMode">
+      <input
+        type="checkbox"
+        id="favorite"
+        name="favorite"
+        :checked="note.isFavorite"
+      />
+      <label for="favorite">Favorite</label>
     </div>
     <div class="button-wrapper">
       <button class="button" @click="handleClick">
@@ -61,6 +72,13 @@ export default {
 }
 #note-card:hover {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+.star {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  color: #ffdf00;
+  font-size: 30px;
 }
 .title {
   padding: 5px;

@@ -8,7 +8,7 @@ const notesSchema = new Schema({
         type: String,
         required: true
     },
-    'isFavourite': {
+    'isFavorite': {
         type: Boolean,
         required: true
     },
