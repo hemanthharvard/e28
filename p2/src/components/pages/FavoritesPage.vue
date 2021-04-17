@@ -37,7 +37,6 @@ export default {
       return response.data ? response.data.data : [];
     },
     async childRequestToUpdateNotes() {
-      console.log("childRequestToUpdateNotes");
       this.notes = await this.loadNotes();
     },
   },

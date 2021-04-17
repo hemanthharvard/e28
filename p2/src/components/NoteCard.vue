@@ -43,13 +43,23 @@
 </template>
 
 <script>
+import { default as axios } from "@/common/app.js";
 export default {
   name: "NoteCard",
   methods: {
+    updateCard: async function (data) {
+      await axios.put(`updateNote/${this.note._id}`, data);
+    },
     handleEditClick: function () {
       this.editMode = !this.editMode;
       if (!this.editMode) {
-        this.parentToUpdateNotes();
+        const data = {
+          title: "updatedTitle",
+          content: "updatedContent",
+          isFavorite: false,
+        };
+        this.updateCard(data);
+        setTimeout(() => this.parentToUpdateNotes(), 1000);
       }
     },
     handleDeleteClick: function () {

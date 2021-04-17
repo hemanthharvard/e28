@@ -24,6 +24,38 @@ class Axios {
         }
 
     }
+    async put(endpointName, data) {
+        try {
+            const response = await this.axios.put(endpointName, data);
+            if (response.status && response.status >= 300) {
+                throw ({
+                    status: response.status,
+                    statusCode: response.statusCode
+                })
+            }
+            return response;
+        } catch (error) {
+            console.error('Axios put failed: ', error);
+            return {};
+        }
+
+    }
+    async post(endpointName, data) {
+        try {
+            const response = await this.axios.post(endpointName, data);
+            if (response.status && response.status >= 300) {
+                throw ({
+                    status: response.status,
+                    statusCode: response.statusCode
+                })
+            }
+            return response;
+        } catch (error) {
+            console.error('Axios post failed: ', error);
+            return {};
+        }
+
+    }
 }
 
 export default new Axios();
