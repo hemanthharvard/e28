@@ -1,7 +1,8 @@
 <template>
   <div id="favourites-page">
     <ul>
-      <li v-for="note in notes" :key="note._id">
+      <li v-for="note in filteredNotes" :key="note._id">
+        {{ filteredNotes }}
         <note-card :label="note.title" v-bind:note="note"></note-card>
       </li>
     </ul>
@@ -11,6 +12,16 @@
 <script>
 import NoteCard from "@/components/NoteCard.vue";
 export default {
+  data() {
+    return {
+      filteredNotes: this.notes.filter((note) => {
+        if (note.isFavourite) {
+          console.log(note);
+          return true;
+        }
+      }),
+    };
+  },
   props: {
     notes: {
       type: Array,

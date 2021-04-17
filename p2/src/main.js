@@ -1,5 +1,10 @@
-import { createApp } from 'vue'
-import { createRouter, createWebHistory } from 'vue-router';
+import {
+    createApp
+} from 'vue'
+import {
+    createRouter,
+    createWebHistory
+} from 'vue-router';
 
 import App from './App.vue'
 import HomePage from '@/components/pages/HomePage.vue';
@@ -9,11 +14,25 @@ import NoteDetailPage from '@/components/pages/NoteDetailPage.vue';
 
 const router = createRouter({
     history: createWebHistory(),
-    routes: [
-        { path: '/', component: HomePage },
-        { path: '/favourites', component: FavouritesPage },
-        { path: '/new', component: CreateNewNotePage },
-        { path: '/:id', component: NoteDetailPage, props: true },
+    routes: [{
+            path: '/',
+            component: HomePage,
+            props: true
+        },
+        {
+            path: '/favourites',
+            component: FavouritesPage,
+            props: true
+        },
+        {
+            path: '/new',
+            component: CreateNewNotePage
+        },
+        {
+            path: '/:id',
+            component: NoteDetailPage,
+            props: true
+        },
     ]
 });
 
