@@ -22,10 +22,10 @@
           </li>
         </ul>
       </nav>
-      <p id="description">
-        Note Keeper is your one-stop shop for all your note keeping needs.
-      </p>
     </div>
+    <p id="description">
+      Note Keeper is your one-stop shop for all your note keeping needs.
+    </p>
 
     <router-view
       v-bind:notes="notes"
