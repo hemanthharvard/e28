@@ -2,7 +2,11 @@
   <div id="home-page">
     <ul>
       <li v-for="note in notes" :key="note._id">
-        <note-card :label="note.title" v-bind:note="note"></note-card>
+        <note-card
+          :label="note.title"
+          v-bind:note="note"
+          v-on:updateNotes="childRequestToUpdateNotes"
+        ></note-card>
       </li>
     </ul>
   </div>
@@ -28,6 +32,10 @@ export default {
     async loadNotes() {
       const response = await axios.get("listNotes");
       return response.data ? response.data.data : [];
+    },
+    async childRequestToUpdateNotes() {
+      console.log("childRequestToUpdateNotes");
+      this.notes = await this.loadNotes();
     },
   },
 };

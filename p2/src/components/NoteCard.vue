@@ -45,6 +45,12 @@ export default {
   methods: {
     handleClick: function () {
       this.editMode = !this.editMode;
+      if (!this.editMode) {
+        this.parentToUpdateNotes();
+      }
+    },
+    parentToUpdateNotes: function () {
+      this.$emit("updateNotes");
     },
   },
   data() {
