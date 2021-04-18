@@ -21,3 +21,6 @@
 
 ## Outside resources
 - None
+
+## Notes for instructor
+- This application has been tested with Chrome browser
