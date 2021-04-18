@@ -1,8 +1,4 @@
-# Assignment #5 - REST APIs
-
-The description of this assignment can be found in Canvas at [Assignment #5](https://canvas.harvard.edu/courses/54354/assignments/249114) (Spring 2019)
-
-You should build your application in this repo cloned for you in Github Classroom. You'll submit your project and github URLs in Canvas.
+# REST APIs
 
 **Project setup:-**
 
@@ -29,11 +25,11 @@ Note:- This script will start the application locally, run some tests, display t
 2. Open the browser with the URL [http://localhost:8080/apiTests](http://localhost:8080/apiTests).
 3. Open the web developer console in the browser.
 4. Click `Run tests` button and observe the console for logs.
-5. When you run locally, you can change the hostname value in the text box to `hemanthkishen.com` to test CORS setup. This will hit the APIs hosted in my Digital Ocean server.
+5. When you run locally, you can change the hostname value in the text box to `e28data.hemanthkishen.com` to test CORS setup. This will hit the APIs hosted in my Digital Ocean server.
 
 **Instructions to run the tests in the Browser (Digital Ocean):-**
 
-1. Go to [http://hemanthkishen.com:8080/apiTests](http://hemanthkishen.com:8080/apiTests).
+1. Go to [http://e28data.hemanthkishen.com/](http://e28data.hemanthkishen.com/).
 2. The page will automatically populate the hostname and the port for you in the form.
 3. Open the web developer console in the browser.
 4. Click `Run tests` button and observe the console for logs.
