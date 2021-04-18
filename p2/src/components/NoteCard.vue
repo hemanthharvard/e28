@@ -61,7 +61,7 @@
         @click="handleEditClick"
         v-if="!isNewNote && !editMode"
       >
-        Done
+        Edit
       </button>
       <button
         class="add-button"
