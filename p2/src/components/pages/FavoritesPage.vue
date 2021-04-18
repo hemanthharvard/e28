@@ -38,6 +38,9 @@ export default {
     },
     async childRequestToUpdateNotes() {
       this.notes = await this.loadNotes();
+      this.filteredNotes = notes.filter((note) => {
+        return note.isFavorite;
+      });
     },
   },
 };
