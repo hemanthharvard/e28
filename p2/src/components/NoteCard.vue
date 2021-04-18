@@ -3,7 +3,7 @@
     <div class="star" v-if="!editMode && note.isFavorite">&#9733;</div>
     <div class="star" v-if="!editMode && !note.isFavorite">&#9734;</div>
     <div class="title" v-if="editMode">
-      <input type="text" id="title" name="title" :value="note.title" />
+      <input type="text" id="title" name="title" v-model="title" />
     </div>
     <div class="title" v-else>
       <p>{{ note.title }}</p>
@@ -14,7 +14,7 @@
         name="content"
         rows="6"
         cols="30"
-        :value="note.content"
+        v-model="content"
         maxlength="200"
       >
       </textarea>
@@ -27,7 +27,9 @@
         type="checkbox"
         id="favorite"
         name="favorite"
-        :checked="note.isFavorite"
+        v-model="isFavorite"
+        true-value="true"
+        false-value="false"
       />
       <label for="favorite">Favorite</label>
     </div>
@@ -56,9 +58,9 @@ export default {
     handleEditClick: function () {
       if (this.editMode) {
         const data = {
-          title: "updatedTitle",
-          content: "updatedContent",
-          isFavorite: false,
+          title: this.title,
+          content: this.content,
+          isFavorite: this.isFavorite,
         };
         this.updateCard(data);
         setTimeout(() => this.parentToUpdateNotes(), 1000);
@@ -76,6 +78,9 @@ export default {
   },
   data() {
     return {
+      title: this.note.title,
+      content: this.note.content,
+      isFavorite: this.note.isFavorite,
       editMode: false,
     };
   },
