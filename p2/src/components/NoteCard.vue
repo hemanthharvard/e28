@@ -68,7 +68,7 @@
         @click="handleAddClick"
         v-if="isNewNote && editMode"
       >
-        Add
+        {{ isAdding ? "Adding..." : "Add" }}
       </button>
     </div>
   </div>
@@ -112,6 +112,7 @@ export default {
       };
       if (this.title && this.content) {
         this.addCard(data);
+        this.isAdding = !this.isAdding;
         setTimeout(() => this.$router.push("/"), 1000);
       }
     },
@@ -130,6 +131,7 @@ export default {
       content: this.note.content,
       isFavorite: this.note.isFavorite,
       editMode: this.isNewNote,
+      isAdding: false,
     };
   },
   props: {
