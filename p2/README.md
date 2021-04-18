@@ -13,7 +13,7 @@
 ## Server interaction
 - The server supports all CRUD operations (Create, Read, Update, Delete)
 - Steps to test server functionality:-
-    1. Go to [http://e28data.hemanthkishen.com/](http://e28data.hemanthkishen.com/).
+    1. Go to <a href="http://e28data.hemanthkishen.com/" target="_blank">http://e28data.hemanthkishen.com/</a>.
     2. The page will automatically populate the hostname and the port for you in the form.
     3. Open the web developer console in the browser.
     4. Click `Run tests` button and observe the console for logs.
