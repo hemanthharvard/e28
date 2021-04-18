@@ -42,11 +42,33 @@
       <p v-if="!content" class="error-message">Please enter content</p>
     </div>
     <div class="button-wrapper">
-      <button class="delete-button" @click="handleDeleteClick" v-if="editMode">
+      <button
+        class="delete-button"
+        @click="handleDeleteClick"
+        v-if="!isNewNote && editMode"
+      >
         Delete
       </button>
-      <button class="edit-button" @click="handleEditClick">
-        {{ editMode ? "Done" : "Edit" }}
+      <button
+        class="edit-button"
+        @click="handleEditClick"
+        v-if="!isNewNote && editMode"
+      >
+        Done
+      </button>
+      <button
+        class="edit-button"
+        @click="handleEditClick"
+        v-if="!isNewNote && !editMode"
+      >
+        Done
+      </button>
+      <button
+        class="add-button"
+        @click="handleAddClick"
+        v-if="isNewNote && editMode"
+      >
+        Add
       </button>
     </div>
   </div>
@@ -59,6 +81,9 @@ export default {
   methods: {
     updateCard: async function (data) {
       await axios.put(`updateNote/${this.note._id}`, data);
+    },
+    addCard: async function (data) {
+      await axios.post("newNote", data);
     },
     deleteCard: async function () {
       await axios.delete(`deleteNote/${this.note._id}`);
@@ -79,6 +104,16 @@ export default {
         this.editMode = !this.editMode;
       }
     },
+    handleAddClick: function () {
+      const data = {
+        title: this.title,
+        content: this.content,
+        isFavorite: this.isFavorite,
+      };
+      if (this.title && this.content) {
+        this.addCard(data);
+      }
+    },
     handleDeleteClick: function () {
       this.editMode = !this.editMode;
       this.deleteCard();
@@ -93,13 +128,17 @@ export default {
       title: this.note.title,
       content: this.note.content,
       isFavorite: this.note.isFavorite,
-      editMode: false,
+      editMode: this.isNewNote,
     };
   },
   props: {
     note: {
       type: Object,
       default: null,
+    },
+    isNewNote: {
+      type: Boolean,
+      default: false,
     },
   },
 };
@@ -184,6 +223,20 @@ export default {
   transition-duration: 0.4s;
   cursor: pointer;
   background-color: #ff0000;
+  color: black;
+}
+.add-button {
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: #4caf50;
   color: black;
 }
 .error-message {
