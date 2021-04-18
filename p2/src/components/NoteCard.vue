@@ -112,7 +112,7 @@ export default {
       };
       if (this.title && this.content) {
         this.addCard(data);
-        this.$router.push("/");
+        setTimeout(() => this.$router.push("/"), 1000);
       }
     },
     handleDeleteClick: function () {
