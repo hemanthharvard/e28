@@ -112,6 +112,7 @@ export default {
       };
       if (this.title && this.content) {
         this.addCard(data);
+        this.$router.push("/");
       }
     },
     handleDeleteClick: function () {
