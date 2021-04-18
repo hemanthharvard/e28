@@ -53,7 +53,7 @@ export default {
 }
 #home-page > ul > li {
   padding: 2%;
-  min-width: 300px;
+  min-width: 315px;
   height: 30%;
   width: 30%;
 }

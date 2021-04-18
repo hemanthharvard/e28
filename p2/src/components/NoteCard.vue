@@ -3,10 +3,16 @@
     <div class="star" v-if="!editMode && note.isFavorite">&#9733;</div>
     <div class="star" v-if="!editMode && !note.isFavorite">&#9734;</div>
     <div class="title" v-if="editMode">
-      <input type="text" id="title" name="title" v-model="title" />
+      <input
+        type="text"
+        id="title"
+        name="title"
+        v-model="title"
+        maxlength="30"
+      />
     </div>
     <div class="title" v-else>
-      <p>{{ note.title }}</p>
+      {{ note.title }}
     </div>
     <div class="content" v-if="editMode">
       <textarea
@@ -20,7 +26,7 @@
       </textarea>
     </div>
     <div class="content" v-else>
-      <p>{{ note.content }}</p>
+      {{ note.content }}
     </div>
     <div v-if="editMode">
       <input
@@ -117,13 +123,12 @@ export default {
   flex-direction: row;
   justify-content: flex-end;
   color: #ffdf00;
-  font-size: 30px;
+  font-size: 20px;
 }
 .title {
   padding: 5px;
-}
-.title > p {
   font-weight: bold;
+  margin: 0;
 }
 #title {
   border-color: blue;
@@ -132,6 +137,7 @@ export default {
 }
 .content {
   padding: 5px;
+  margin: 0;
 }
 #content {
   border-color: blue;
