@@ -37,7 +37,7 @@ export default {
       return response.data ? response.data.data : [];
     },
     async childRequestToUpdateNotes() {
-      this.notes = await this.loadNotes();
+      const notes = await this.loadNotes();
       this.filteredNotes = notes.filter((note) => {
         return note.isFavorite;
       });
