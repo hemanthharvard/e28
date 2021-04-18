@@ -138,6 +138,7 @@ export default {
 .content {
   padding: 5px;
   margin: 0;
+  word-wrap: break-word;
 }
 #content {
   border-color: blue;
