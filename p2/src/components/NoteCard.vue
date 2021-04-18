@@ -32,6 +32,8 @@
         false-value="false"
       />
       <label for="favorite">Favorite</label>
+      <p v-if="!title" class="error-message">Please enter title</p>
+      <p v-if="!content" class="error-message">Please enter content</p>
     </div>
     <div class="button-wrapper">
       <button class="delete-button" @click="handleDeleteClick" v-if="editMode">
@@ -62,10 +64,14 @@ export default {
           content: this.content,
           isFavorite: this.isFavorite,
         };
-        this.updateCard(data);
-        setTimeout(() => this.parentToUpdateNotes(), 1000);
+        if (this.title && this.content) {
+          this.updateCard(data);
+          setTimeout(() => this.parentToUpdateNotes(), 1000);
+        }
       }
-      this.editMode = !this.editMode;
+      if (this.title && this.content) {
+        this.editMode = !this.editMode;
+      }
     },
     handleDeleteClick: function () {
       this.editMode = !this.editMode;
@@ -172,5 +178,11 @@ export default {
   cursor: pointer;
   background-color: #ff0000;
   color: black;
+}
+.error-message {
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 0;
 }
 </style>
