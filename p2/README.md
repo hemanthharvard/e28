@@ -8,7 +8,7 @@
 - CreateNewNotePage.vue - This page is to create a new note
 
 ## SFC summary
-- NoteCard.vue - This SFC is for creating, updating and deleting a note
+- NoteCard.vue - This SFC renders the note card which can create, update and delete a note
   
 ## Server interaction
 - The server supports all CRUD operations (Create, Read, Update, Delete)
@@ -17,7 +17,7 @@
     2. The page will automatically populate the hostname and the port for you in the form.
     3. Open the web developer console in the browser.
     4. Click `Run tests` button and observe the console for logs.
-- More information please refer the [Server README](https://github.com/hemanthharvard/e28/blob/main/api/readme.md)
+- More information please refer the server [README](https://github.com/hemanthharvard/e28/blob/main/api/readme.md)
 
 ## Outside resources
 - None
