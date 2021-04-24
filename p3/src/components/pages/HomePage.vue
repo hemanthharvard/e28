@@ -13,9 +13,7 @@ import NoteCard from "@/components/NoteCard.vue";
 export default {
   name: "HomePage",
   data() {
-    return {
-      notes: this.$store.state.notes,
-    };
+    return {};
   },
   mounted() {
     this.loadNotes();
@@ -26,6 +24,11 @@ export default {
   methods: {
     loadNotes() {
       this.$store.dispatch("loadNotes");
+    },
+  },
+  computed: {
+    notes() {
+      return this.$store.state.notes;
     },
   },
 };

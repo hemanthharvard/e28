@@ -13,13 +13,10 @@ import NoteCard from "@/components/NoteCard.vue";
 export default {
   name: "FavoritesPage",
   data() {
-    return {
-      filteredNotes: this.$store.getters.getFavoriteNotes(),
-    };
+    return {};
   },
-  async mounted() {
+  mounted() {
     this.loadNotes();
-    this.filteredNotes = this.$store.getters.getFavoriteNotes();
   },
   components: {
     "note-card": NoteCard,
@@ -27,6 +24,11 @@ export default {
   methods: {
     loadNotes() {
       this.$store.dispatch("loadNotes");
+    },
+  },
+  computed: {
+    filteredNotes() {
+      return this.$store.getters.getFavoriteNotes();
     },
   },
 };
