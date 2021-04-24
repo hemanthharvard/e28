@@ -10,7 +10,6 @@ import App from './App.vue'
 import HomePage from '@/components/pages/HomePage.vue';
 import FavoritesPage from '@/components/pages/FavoritesPage.vue';
 import CreateNewNotePage from '@/components/pages/CreateNewNotePage.vue';
-import NoteDetailPage from '@/components/pages/NoteDetailPage.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -25,11 +24,6 @@ const router = createRouter({
         {
             path: '/new',
             component: CreateNewNotePage
-        },
-        {
-            path: '/:id',
-            component: NoteDetailPage,
-            props: true
         },
     ]
 });
