@@ -97,7 +97,7 @@ export default {
         };
         if (this.title && this.content) {
           this.updateCard(data);
-          setTimeout(() => this.parentToUpdateNotes(), 1000);
+          setTimeout(() => this.$store.dispatch("loadNotes"), 1000);
         }
       }
       if (this.title && this.content) {
@@ -119,10 +119,7 @@ export default {
     handleDeleteClick: function () {
       this.editMode = !this.editMode;
       this.deleteCard();
-      setTimeout(() => this.parentToUpdateNotes(), 1000);
-    },
-    parentToUpdateNotes: function () {
-      this.$emit("updateNotes");
+      setTimeout(() => this.$store.dispatch("loadNotes"), 1000);
     },
   },
   data() {

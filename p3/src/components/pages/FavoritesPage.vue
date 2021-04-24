@@ -2,45 +2,31 @@
   <div id="favourites-page">
     <ul>
       <li v-for="note in filteredNotes" :key="note._id">
-        <note-card
-          :label="note.title"
-          v-bind:note="note"
-          v-on:updateNotes="childRequestToUpdateNotes"
-        ></note-card>
+        <note-card :label="note.title" v-bind:note="note"></note-card>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { default as axios } from "@/common/app.js";
 import NoteCard from "@/components/NoteCard.vue";
 export default {
   name: "FavoritesPage",
   data() {
     return {
-      filteredNotes: [],
+      filteredNotes: this.$store.getters.getFavoriteNotes(),
     };
   },
   async mounted() {
-    const notes = await this.loadNotes();
-    this.filteredNotes = notes.filter((note) => {
-      return note.isFavorite;
-    });
+    this.loadNotes();
+    this.filteredNotes = this.$store.getters.getFavoriteNotes();
   },
   components: {
     "note-card": NoteCard,
   },
   methods: {
-    async loadNotes() {
-      const response = await axios.get("listNotes");
-      return response.data ? response.data.data : [];
-    },
-    async childRequestToUpdateNotes() {
-      const notes = await this.loadNotes();
-      this.filteredNotes = notes.filter((note) => {
-        return note.isFavorite;
-      });
+    loadNotes() {
+      this.$store.dispatch("loadNotes");
     },
   },
 };

@@ -5,6 +5,9 @@ import {
     createRouter,
     createWebHistory
 } from 'vue-router';
+import {
+    store
+} from "@/common/store.js";
 
 import App from './App.vue'
 import HomePage from '@/components/pages/HomePage.vue';
@@ -28,4 +31,4 @@ const router = createRouter({
     ]
 });
 
-createApp(App).use(router).mount('#app');
+createApp(App).use(router).use(store).mount('#app');
