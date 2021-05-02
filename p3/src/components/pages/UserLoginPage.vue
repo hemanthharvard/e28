@@ -1,16 +1,6 @@
 <template>
   <div id="account-page">
     <div v-if="user">
-      <h2 data-test="welcome-message">Hi, {{ user.name }}!</h2>
-
-      <div id="favorites">
-        <strong>Your Favorites</strong>
-        <p v-if="favorites && favorites.length == 0">No favorites yet.</p>
-        <li v-for="(favorite, key) in favorites" v-bind:key="key">
-          {{ favorite.name }}
-        </li>
-      </div>
-
       <button v-on:click="logout" data-test="logout-button">Logout</button>
     </div>
 
@@ -57,39 +47,23 @@ export default {
       // Form is prefilled for demonstration purposes; remove in final application
       // jill@harvard.edu/asdfasdf is one of our seed users from e28api/seeds/user.json
       data: {
-        email: "jill@harvard.edu",
-        password: "asdfasdf",
+        email: "",
+        password: "",
       },
       errors: null,
-      favorites: [],
     };
   },
   computed: {
     user() {
       return this.$store.state.user;
     },
-    products() {
-      return this.$store.state.products;
-    },
   },
   methods: {
-    loadFavorites() {
-      if (this.user) {
-        axios.get("favorite/query?user_id=" + this.user.id).then((response) => {
-          this.favorites = response.data.favorite.map((favorite) => {
-            return this.$store.getters.getProductById(favorite.product_id);
-          });
-        });
-      }
-    },
-    login() {
-      axios.post("login", this.data).then((response) => {
+    createNewUser() {
+        const response = await axios.post("newUser");
         if (response.data.authenticated) {
-          this.$store.commit("setUser", response.data.user);
-        } else {
-          this.errors = response.data.errors;
+            context.commit('setUser', response.data.user);
         }
-      });
     },
     logout() {
       axios.post("logout").then((response) => {

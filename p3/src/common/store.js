@@ -31,13 +31,18 @@ export const store = createStore({
             const response = await axios.get("listNotes");
             context.commit('setNotes', response.data ? response.data.data : []);
         },
-        authUser(context) {
-            axios.post('auth').then((response) => {
-                if (response.data.authenticated) {
-                    context.commit('setUser', response.data.user);
-                }
-            });
+        async authUser(context) {
+            const response = await axios.post("authUser");
+            if (response.data.authenticated) {
+                context.commit('setUser', response.data.user);
+            }
         },
+        async logoutUser(context) {
+            const response = await axios.post("logout");
+            if (response.data.success) {
+                context.commit("setUser", null);
+            }
+        }
     },
     getters: {
         getFavoriteNotes: (state) => () => {

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const dataService = require('../controllers/dataService');
 const DataService = dataService.DataService;
+const UserService = dataService.UserService;
 
 const allowedOrigins = ['http://localhost:8081', 'http://e28p2.hemanthkishen.com', 'http://e28p3.hemanthkishen.com'];
 
@@ -188,6 +189,54 @@ router.delete('/deleteAllNotes', async (req, res, next) => {
 			status: 'failed',
 			message: err.message
 		});
+	}
+
+});
+
+router.get('/listUsers', async (req, res, next) => {
+
+	res.set({
+		'Content-type': 'application/json'
+	});
+
+	try {
+		const data = await UserService.fetchUsers();
+		res.statusCode = data.statusCode;
+		res.send(data);
+	} catch (err) {
+		res.statusCode = 500;
+		res.send({
+			status: 'failed',
+			message: err.message
+		});
+	}
+
+});
+
+router.post('/newUser', async (req, res, next) => {
+
+	res.set({
+		'Content-type': 'application/json'
+	});
+
+	try {
+		const data = await UserService.newUser(req.body);
+		res.statusCode = data.statusCode;
+		res.send(data);
+	} catch (err) {
+		if (err.message.startsWith('note validation failed')) {
+			res.statusCode = 400;
+			res.send({
+				status: 'failed',
+				message: err.message
+			});
+		} else {
+			res.statusCode = 500;
+			res.send({
+				status: 'failed',
+				message: err.message
+			});
+		}
 	}
 
 });

@@ -6,21 +6,21 @@ class DataService {
 	static listNote(id) {
 		return new Promise((resolve, reject) => {
 			const Notes = models('notes');
-			Notes.find({_id: id}).exec((err, docs) => {
+			Notes.find({
+				_id: id
+			}).exec((err, docs) => {
 				if (err) {
 					// logger.error(`Failed to retrieve note: ${id}`, err.message);
-					reject (new Error(err.message));
-				}
-				else {
+					reject(new Error(err.message));
+				} else {
 					if (docs.length) {
-						resolve ({
+						resolve({
 							status: 'success',
 							statusCode: 200,
 							data: docs
 						});
-					}
-					else {
-						resolve ({
+					} else {
+						resolve({
 							status: 'failed',
 							statusCode: 404,
 							data: docs
@@ -34,13 +34,14 @@ class DataService {
 	static listNotes() {
 		return new Promise((resolve, reject) => {
 			const Notes = models('notes');
-			Notes.find().sort({updated: 'descending'}).exec((err, docs) => {
+			Notes.find().sort({
+				updated: 'descending'
+			}).exec((err, docs) => {
 				if (err) {
 					// logger.error('Failed to retrieve notes: ', err.message);
-					reject (new Error(err.message));
-				}
-				else {
-					resolve ({
+					reject(new Error(err.message));
+				} else {
+					resolve({
 						status: 'success',
 						statusCode: 200,
 						data: docs
@@ -49,7 +50,7 @@ class DataService {
 			});
 		});
 	}
-  
+
 	static newNote(data) {
 		return new Promise((resolve, reject) => {
 			const Notes = models('notes');
@@ -57,10 +58,9 @@ class DataService {
 			newNotes.save((err) => {
 				if (err) {
 					// logger.error('Failed to save new note: ', err.message);
-					reject (new Error(err.message));
-				}
-				else {
-					resolve ({
+					reject(new Error(err.message));
+				} else {
+					resolve({
 						status: 'success',
 						statusCode: 200,
 						data: newNotes
@@ -73,30 +73,29 @@ class DataService {
 	static updateNote(id, data) {
 		return new Promise((resolve, reject) => {
 			const Notes = models('notes');
-			Notes.findById({_id: id}).exec((err, retrievedNotes) => {
+			Notes.findById({
+				_id: id
+			}).exec((err, retrievedNotes) => {
 				if (err) {
 					// logger.error(`Failed to fetch note number: ${id}`, err.message);
-					reject (new Error(err.message));
-				}
-				else {
+					reject(new Error(err.message));
+				} else {
 					if (retrievedNotes) {
 						retrievedNotes.set(data);
 						retrievedNotes.save((err) => {
 							if (err) {
 								// logger.error(`Failed to update note number: ${id}`, err.message);
-								reject (new Error(err.message));
-							}
-							else {
-								resolve ({
+								reject(new Error(err.message));
+							} else {
+								resolve({
 									status: 'success',
 									statusCode: 200,
 									message: `success updating Notes Number: ${id}`
 								});
 							}
 						});
-					}
-					else {
-						resolve ({
+					} else {
+						resolve({
 							status: 'failed',
 							statusCode: 404,
 							message: `Notes Number: ${id} not found`
@@ -111,29 +110,30 @@ class DataService {
 
 		return new Promise((resolve, reject) => {
 			const Notes = models('notes');
-			Notes.findById({_id: id}).exec((err, retrievedNotes) => {
+			Notes.findById({
+				_id: id
+			}).exec((err, retrievedNotes) => {
 				if (err) {
 					// logger.error(`Failed to fetch note number: ${id}`, err.message);
-					reject (new Error(err.message));
-				}
-				else {
+					reject(new Error(err.message));
+				} else {
 					if (retrievedNotes) {
-						Notes.deleteOne({_id: id}).exec((err) => {
+						Notes.deleteOne({
+							_id: id
+						}).exec((err) => {
 							if (err) {
 								// logger.error(`Failed to remove note number: ${id}`, err.message);
-								reject (new Error(err.message));
-							}
-							else {
-								resolve ({
+								reject(new Error(err.message));
+							} else {
+								resolve({
 									status: 'success',
 									statusCode: 200,
 									message: `success deleting Notes Number: ${id}`
 								});
 							}
 						});
-					}
-					else {
-						resolve ({
+					} else {
+						resolve({
 							status: 'failed',
 							statusCode: 404,
 							message: `Notes Number: ${id} not found`
@@ -151,10 +151,9 @@ class DataService {
 			Notes.deleteMany().exec((err, docs) => {
 				if (err) {
 					// logger.error(`Failed to remove all notes: `, err.message);
-					reject (new Error(err.message));
-				}
-				else {
-					resolve ({
+					reject(new Error(err.message));
+				} else {
+					resolve({
 						status: 'success',
 						statusCode: 200,
 						message: 'success deleting all notes'
@@ -164,6 +163,78 @@ class DataService {
 		});
 	}
 
-  }
-  
-  module.exports.DataService = DataService;
+}
+
+class UserService {
+
+	static newUser(data) {
+		return new Promise((resolve, reject) => {
+			const Users = models('users');
+			const newUsers = new Users(data);
+			newUsers.save((err) => {
+				if (err) {
+					// logger.error('Failed to save new note: ', err.message);
+					reject(new Error(err.message));
+				} else {
+					resolve({
+						status: 'success',
+						statusCode: 200,
+						data: newUsers
+					});
+				}
+			})
+		});
+	}
+
+	static fetchUser(username) {
+		return new Promise((resolve, reject) => {
+			const Users = models('users');
+			Users.find({
+				username
+			}).exec((err, docs) => {
+				if (err) {
+					// logger.error(`Failed to retrieve note: ${id}`, err.message);
+					reject(new Error(err.message));
+				} else {
+					if (docs.length) {
+						resolve({
+							status: 'success',
+							statusCode: 200,
+							data: docs
+						});
+					} else {
+						resolve({
+							status: 'failed',
+							statusCode: 404,
+							data: docs
+						});
+					}
+				}
+			});
+		});
+	}
+
+	static fetchUsers() {
+		return new Promise((resolve, reject) => {
+			const Users = models('users');
+			Users.find().sort({
+				created: 'descending'
+			}).exec((err, docs) => {
+				if (err) {
+					// logger.error('Failed to retrieve notes: ', err.message);
+					reject(new Error(err.message));
+				} else {
+					resolve({
+						status: 'success',
+						statusCode: 200,
+						data: docs
+					});
+				}
+			});
+		});
+	}
+
+}
+
+module.exports.DataService = DataService;
+module.exports.UserService = UserService;
