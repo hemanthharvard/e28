@@ -32,7 +32,9 @@ export const store = createStore({
     },
     actions: {
         async loadNotes(context) {
-            const response = await axios.get("listNotes");
+            const response = await axios.post("listNotes", {
+                username: this.$store.state.username
+            });
             context.commit('setNotes', response.data ? response.data.data : []);
         },
         async validateUser(context) {

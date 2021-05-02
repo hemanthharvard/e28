@@ -4,6 +4,10 @@ const Schema = mongoose.Schema;
 const notesSchema = new Schema({
     'created': Date,
     'updated': Date,
+    'username': {
+        type: String,
+        required: true
+    },
     'title': {
         type: String,
         required: true

@@ -1,5 +1,6 @@
 const env = require('node-env-file');
 const express = require('express');
+const cookieParser = require("cookie-parser");
 const bodyParser = require('body-parser');
 const path = require('path');
 const logger = require('log-util');
@@ -26,6 +27,8 @@ db.on('open', () => {
 
 app.set('views', path.join(__dirname, './views')); // tells express where to find the views
 app.set('view engine', 'pug'); // tells express to use pug as the template engine
+
+app.use(cookieParser()); // access cookies through req.cookies.token
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({

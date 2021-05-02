@@ -6,6 +6,8 @@ const UserService = dataService.UserService;
 
 const allowedOrigins = ['http://localhost:8081', 'http://e28p2.hemanthkishen.com', 'http://e28p3.hemanthkishen.com'];
 
+const cookieMaxAge = 24 * 60; // 24 hours
+
 router.use((req, res, next) => {
 	res.set({
 		// allow certain domains only, allow REST methods we've implemented
@@ -44,9 +46,45 @@ router.get('/listNote/:id', async (req, res, next) => {
 		'Content-type': 'application/json'
 	});
 
-	if (req.params.id) {
+	if (req.cookies.token) {
+		if (req.params.id) {
+			try {
+				const data = await DataService.listNote(req.params.id);
+				res.statusCode = data.statusCode;
+				res.send(data);
+			} catch (err) {
+				res.statusCode = 500;
+				res.send({
+					status: 'failed',
+					message: err.message
+				});
+			}
+		} else {
+			res.statusCode = 400;
+			res.send({
+				status: 'failed',
+				message: 'Invalid ID'
+			});
+		}
+	} else {
+		res.statusCode = 401;
+		res.send({
+			status: 'failed',
+			message: 'Unauthorized'
+		});
+	}
+
+});
+
+router.post('/listNotes', async (req, res, next) => {
+
+	res.set({
+		'Content-type': 'application/json'
+	});
+
+	if (req.cookies.token) {
 		try {
-			const data = await DataService.listNote(req.params.id);
+			const data = await DataService.listNotes(req.body);
 			res.statusCode = data.statusCode;
 			res.send(data);
 		} catch (err) {
@@ -57,30 +95,10 @@ router.get('/listNote/:id', async (req, res, next) => {
 			});
 		}
 	} else {
-		res.statusCode = 400;
+		res.statusCode = 401;
 		res.send({
 			status: 'failed',
-			message: 'Invalid ID'
-		});
-	}
-
-});
-
-router.get('/listNotes', async (req, res, next) => {
-
-	res.set({
-		'Content-type': 'application/json'
-	});
-
-	try {
-		const data = await DataService.listNotes();
-		res.statusCode = data.statusCode;
-		res.send(data);
-	} catch (err) {
-		res.statusCode = 500;
-		res.send({
-			status: 'failed',
-			message: err.message
+			message: 'Unauthorized'
 		});
 	}
 
@@ -92,37 +110,9 @@ router.post('/newNote', async (req, res, next) => {
 		'Content-type': 'application/json'
 	});
 
-	try {
-		const data = await DataService.newNote(req.body);
-		res.statusCode = data.statusCode;
-		res.send(data);
-	} catch (err) {
-		if (err.message.startsWith('note validation failed')) {
-			res.statusCode = 400;
-			res.send({
-				status: 'failed',
-				message: err.message
-			});
-		} else {
-			res.statusCode = 500;
-			res.send({
-				status: 'failed',
-				message: err.message
-			});
-		}
-	}
-
-});
-
-router.put('/updateNote/:id', async (req, res, next) => {
-
-	res.set({
-		'Content-type': 'application/json'
-	});
-
-	if (req.params.id) {
+	if (req.cookies.token) {
 		try {
-			const data = await DataService.updateNote(req.params.id, req.body);
+			const data = await DataService.newNote(req.body);
 			res.statusCode = data.statusCode;
 			res.send(data);
 		} catch (err) {
@@ -141,10 +131,54 @@ router.put('/updateNote/:id', async (req, res, next) => {
 			}
 		}
 	} else {
-		res.statusCode = 400;
+		res.statusCode = 401;
 		res.send({
 			status: 'failed',
-			message: 'Invalid ID'
+			message: 'Unauthorized'
+		});
+	}
+
+});
+
+router.put('/updateNote/:id', async (req, res, next) => {
+
+	res.set({
+		'Content-type': 'application/json'
+	});
+
+	if (req.cookies.token) {
+		if (req.params.id) {
+			try {
+				const data = await DataService.updateNote(req.params.id, req.body);
+				res.statusCode = data.statusCode;
+				res.send(data);
+			} catch (err) {
+				if (err.message.startsWith('note validation failed')) {
+					res.statusCode = 400;
+					res.send({
+						status: 'failed',
+						message: err.message
+					});
+				} else {
+					res.statusCode = 500;
+					res.send({
+						status: 'failed',
+						message: err.message
+					});
+				}
+			}
+		} else {
+			res.statusCode = 400;
+			res.send({
+				status: 'failed',
+				message: 'Invalid ID'
+			});
+		}
+	} else {
+		res.statusCode = 401;
+		res.send({
+			status: 'failed',
+			message: 'Unauthorized'
 		});
 	}
 
@@ -156,23 +190,31 @@ router.delete('/deleteNote/:id', async (req, res, next) => {
 		'Content-type': 'application/json'
 	});
 
-	if (req.params.id) {
-		try {
-			const data = await DataService.deleteNote(req.params.id);
-			res.statusCode = data.statusCode;
-			res.send(data);
-		} catch (err) {
-			res.statusCode = 500;
+	if (req.cookies.token) {
+		if (req.params.id) {
+			try {
+				const data = await DataService.deleteNote(req.params.id);
+				res.statusCode = data.statusCode;
+				res.send(data);
+			} catch (err) {
+				res.statusCode = 500;
+				res.send({
+					status: 'failed',
+					message: err.message
+				});
+			}
+		} else {
+			res.statusCode = 400;
 			res.send({
 				status: 'failed',
-				message: err.message
+				message: 'Invalid ID'
 			});
 		}
 	} else {
-		res.statusCode = 400;
+		res.statusCode = 401;
 		res.send({
 			status: 'failed',
-			message: 'Invalid ID'
+			message: 'Unauthorized'
 		});
 	}
 });
@@ -183,15 +225,23 @@ router.delete('/deleteAllNotes', async (req, res, next) => {
 		'Content-type': 'application/json'
 	});
 
-	try {
-		const data = await DataService.deleteNotes();
-		res.statusCode = data.statusCode;
-		res.send(data);
-	} catch (err) {
-		res.statusCode = 500;
+	if (req.cookies.token) {
+		try {
+			const data = await DataService.deleteNotes();
+			res.statusCode = data.statusCode;
+			res.send(data);
+		} catch (err) {
+			res.statusCode = 500;
+			res.send({
+				status: 'failed',
+				message: err.message
+			});
+		}
+	} else {
+		res.statusCode = 401;
 		res.send({
 			status: 'failed',
-			message: err.message
+			message: 'Unauthorized'
 		});
 	}
 
@@ -199,15 +249,20 @@ router.delete('/deleteAllNotes', async (req, res, next) => {
 
 // User Interface
 
-router.get('/listUser/:id', async (req, res, next) => {
+router.post('/loginUser', async (req, res, next) => {
 
 	res.set({
 		'Content-type': 'application/json'
 	});
 
-	if (req.params.id) {
+	if (req.body) {
 		try {
-			const data = await UserService.fetchUser(req.params.id);
+			const data = await UserService.validateUser(req.body);
+			if (data.status === "success") {
+				res.set({
+					"Set-Cookie": `token=encryptedstring; HttpOnly; Max-Age=${cookieMaxAge}`,
+				});
+			}
 			res.statusCode = data.statusCode;
 			res.send(data);
 		} catch (err) {

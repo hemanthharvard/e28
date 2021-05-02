@@ -31,10 +31,12 @@ class DataService {
 		});
 	}
 
-	static listNotes() {
+	static listNotes(body) {
 		return new Promise((resolve, reject) => {
 			const Notes = models('notes');
-			Notes.find().sort({
+			Notes.find({
+				username: body.username
+			}).sort({
 				updated: 'descending'
 			}).exec((err, docs) => {
 				if (err) {
@@ -167,13 +169,42 @@ class DataService {
 
 class UserService {
 
+	static validateUser(body) {
+		return new Promise((resolve, reject) => {
+			const Users = models('users');
+			Users.find({
+				username: body.username,
+				password: body.password
+			}).exec((err, docs) => {
+				if (err) {
+					// logger.error(`Failed to retrieve user: ${username}`, err.message);
+					reject(new Error(err.message));
+				} else {
+					if (docs.length) {
+						resolve({
+							status: 'success',
+							statusCode: 200,
+							data: docs
+						});
+					} else {
+						resolve({
+							status: 'failed',
+							statusCode: 404,
+							data: docs
+						});
+					}
+				}
+			});
+		});
+	}
+
 	static newUser(data) {
 		return new Promise((resolve, reject) => {
 			const Users = models('users');
 			const newUsers = new Users(data);
 			newUsers.save((err) => {
 				if (err) {
-					// logger.error('Failed to save new note: ', err.message);
+					// logger.error('Failed to save new user: ', err.message);
 					reject(new Error(err.message));
 				} else {
 					resolve({
@@ -193,7 +224,7 @@ class UserService {
 				username
 			}).exec((err, docs) => {
 				if (err) {
-					// logger.error(`Failed to retrieve note: ${id}`, err.message);
+					// logger.error(`Failed to retrieve user: ${username}`, err.message);
 					reject(new Error(err.message));
 				} else {
 					if (docs.length) {
@@ -221,7 +252,7 @@ class UserService {
 				created: 'descending'
 			}).exec((err, docs) => {
 				if (err) {
-					// logger.error('Failed to retrieve notes: ', err.message);
+					// logger.error('Failed to retrieve users: ', err.message);
 					reject(new Error(err.message));
 				} else {
 					resolve({
