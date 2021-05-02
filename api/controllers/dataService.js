@@ -244,9 +244,9 @@ class UserService {
 					// logger.error(`Failed to fetch username: ${username}`, err.message);
 					reject(new Error(err.message));
 				} else {
-					if (retrievedUsers) {
-						retrievedUsers.set(data);
-						retrievedUsers.save((err) => {
+					if (retrievedUsers && retrievedUsers[0]) {
+						retrievedUsers[0].set(data);
+						retrievedUsers[0].save((err) => {
 							if (err) {
 								// logger.error(`Failed to update username: ${username}`, err.message);
 								reject(new Error(err.message));
