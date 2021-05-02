@@ -12,8 +12,7 @@ const app = express();
 // env(__dirname + '/.env');
 
 // Connect to the database
-mongoose.connect(`mongodb+srv://${process.env.harvardDbUsername}:${process.env.harvardDbPassword}@cluster0-kgyed.mongodb.net/e28-project?retryWrites=true&w=majority`,
-{	
+mongoose.connect(`mongodb+srv://${process.env.harvardDbUsername}:${process.env.harvardDbPassword}@cluster0-kgyed.mongodb.net/e28-project?retryWrites=true&w=majority`, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 });
@@ -29,7 +28,9 @@ app.set('views', path.join(__dirname, './views')); // tells express where to fin
 app.set('view engine', 'pug'); // tells express to use pug as the template engine
 
 app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+app.use(bodyParser.urlencoded({
+	extended: true
+})); // support encoded bodies
 
 app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use('/', routes('apiTests'));
