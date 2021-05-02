@@ -23,6 +23,7 @@ export default {
   },
   methods: {
     loadNotes() {
+      this.$store.dispatch("authUser");
       this.$store.dispatch("loadNotes");
     },
   },

@@ -15,18 +15,29 @@ export const store = createStore({
     state() {
         return {
             notes: [],
+            user: null
         }
     },
     mutations: {
         setNotes(state, payload) {
             state.notes = payload;
+        },
+        setUser(state, payload) {
+            state.user = payload;
         }
     },
     actions: {
         async loadNotes(context) {
             const response = await axios.get("listNotes");
             context.commit('setNotes', response.data ? response.data.data : []);
-        }
+        },
+        authUser(context) {
+            axios.post('auth').then((response) => {
+                if (response.data.authenticated) {
+                    context.commit('setUser', response.data.user);
+                }
+            });
+        },
     },
     getters: {
         getFavoriteNotes: (state) => () => {
