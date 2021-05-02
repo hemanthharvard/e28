@@ -234,6 +234,99 @@ class UserService {
 		});
 	}
 
+	static updateUser(username, data) {
+		return new Promise((resolve, reject) => {
+			const Users = models('users');
+			Users.find({
+				username
+			}).exec((err, retrievedUsers) => {
+				if (err) {
+					// logger.error(`Failed to fetch username: ${username}`, err.message);
+					reject(new Error(err.message));
+				} else {
+					if (retrievedUsers) {
+						retrievedUsers.set(data);
+						retrievedUsers.save((err) => {
+							if (err) {
+								// logger.error(`Failed to update username: ${username}`, err.message);
+								reject(new Error(err.message));
+							} else {
+								resolve({
+									status: 'success',
+									statusCode: 200,
+									message: `success updating username: ${username}`
+								});
+							}
+						});
+					} else {
+						resolve({
+							status: 'failed',
+							statusCode: 404,
+							message: `Username: ${username} not found`
+						});
+					}
+				}
+			});
+		});
+	}
+
+	static deleteUser(username) {
+
+		return new Promise((resolve, reject) => {
+			const Users = models('users');
+			Users.find({
+				username
+			}).exec((err, retrievedUsers) => {
+				if (err) {
+					// logger.error(`Failed to fetch note number: ${id}`, err.message);
+					reject(new Error(err.message));
+				} else {
+					if (retrievedUsers) {
+						Users.deleteOne({
+							username
+						}).exec((err) => {
+							if (err) {
+								// logger.error(`Failed to remove username: ${username}`, err.message);
+								reject(new Error(err.message));
+							} else {
+								resolve({
+									status: 'success',
+									statusCode: 200,
+									message: `success deleting username: ${username}`
+								});
+							}
+						});
+					} else {
+						resolve({
+							status: 'failed',
+							statusCode: 404,
+							message: `Username: ${username} not found`
+						});
+					}
+				}
+			});
+		});
+
+	}
+
+	static deleteUsers() {
+		return new Promise((resolve, reject) => {
+			const Users = models('users');
+			Users.deleteMany().exec((err, docs) => {
+				if (err) {
+					// logger.error(`Failed to remove all users: `, err.message);
+					reject(new Error(err.message));
+				} else {
+					resolve({
+						status: 'success',
+						statusCode: 200,
+						message: 'success deleting all users'
+					});
+				}
+			});
+		});
+	}
+
 }
 
 module.exports.DataService = DataService;

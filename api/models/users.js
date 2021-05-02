@@ -6,7 +6,8 @@ const userSchema = new Schema({
     'updated': Date,
     'username': {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     'password': String,
 }, {

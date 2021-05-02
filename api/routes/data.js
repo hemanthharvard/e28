@@ -20,6 +20,8 @@ router.use((req, res, next) => {
 	next();
 });
 
+// API Interface
+
 router.get('/', (req, res, next) => {
 	res.set({
 		'Content-type': 'text/plain'
@@ -33,6 +35,8 @@ router.get('/ping', (req, res, next) => {
 	});
 	res.send('pong');
 });
+
+// Notes Interface
 
 router.get('/listNote/:id', async (req, res, next) => {
 
@@ -193,6 +197,36 @@ router.delete('/deleteAllNotes', async (req, res, next) => {
 
 });
 
+// User Interface
+
+router.get('/listUser/:id', async (req, res, next) => {
+
+	res.set({
+		'Content-type': 'application/json'
+	});
+
+	if (req.params.id) {
+		try {
+			const data = await UserService.fetchUser(req.params.id);
+			res.statusCode = data.statusCode;
+			res.send(data);
+		} catch (err) {
+			res.statusCode = 500;
+			res.send({
+				status: 'failed',
+				message: err.message
+			});
+		}
+	} else {
+		res.statusCode = 400;
+		res.send({
+			status: 'failed',
+			message: 'Invalid ID'
+		});
+	}
+
+});
+
 router.get('/listUsers', async (req, res, next) => {
 
 	res.set({
@@ -237,6 +271,89 @@ router.post('/newUser', async (req, res, next) => {
 				message: err.message
 			});
 		}
+	}
+
+});
+
+router.put('/updateUser/:id', async (req, res, next) => {
+
+	res.set({
+		'Content-type': 'application/json'
+	});
+
+	if (req.params.id) {
+		try {
+			const data = await UserService.updateUser(req.params.id, req.body);
+			res.statusCode = data.statusCode;
+			res.send(data);
+		} catch (err) {
+			if (err.message.startsWith('user validation failed')) {
+				res.statusCode = 400;
+				res.send({
+					status: 'failed',
+					message: err.message
+				});
+			} else {
+				res.statusCode = 500;
+				res.send({
+					status: 'failed',
+					message: err.message
+				});
+			}
+		}
+	} else {
+		res.statusCode = 400;
+		res.send({
+			status: 'failed',
+			message: 'Invalid ID'
+		});
+	}
+
+});
+
+router.delete('/deleteUser/:id', async (req, res, next) => {
+
+	res.set({
+		'Content-type': 'application/json'
+	});
+
+	if (req.params.id) {
+		try {
+			const data = await UserService.deleteUser(req.params.id);
+			res.statusCode = data.statusCode;
+			res.send(data);
+		} catch (err) {
+			res.statusCode = 500;
+			res.send({
+				status: 'failed',
+				message: err.message
+			});
+		}
+	} else {
+		res.statusCode = 400;
+		res.send({
+			status: 'failed',
+			message: 'Invalid ID'
+		});
+	}
+});
+
+router.delete('/deleteAllUsers', async (req, res, next) => {
+
+	res.set({
+		'Content-type': 'application/json'
+	});
+
+	try {
+		const data = await UserService.deleteUsers();
+		res.statusCode = data.statusCode;
+		res.send(data);
+	} catch (err) {
+		res.statusCode = 500;
+		res.send({
+			status: 'failed',
+			message: err.message
+		});
 	}
 
 });
