@@ -59,16 +59,21 @@ export default {
     },
   },
   methods: {
-    createNewUser() {
-        const response = await axios.post("newUser");
-        if (response.data.authenticated) {
-            context.commit('setUser', response.data.user);
-        }
+    async createNewUser() {
+      const response = await axios.post("newUser", {
+        username: this.username,
+        password: this.password,
+      });
+      if (response.status === "success") {
+        this.$store.commit("setUser", response.data.username);
+        this.$store.commit("setPassword", response.data.password);
+      }
     },
-    logout() {
+    async logout() {
       axios.post("logout").then((response) => {
-        if (response.data.success) {
+        if (response.status === "success") {
           this.$store.commit("setUser", null);
+          this.$store.commit("setPassword", null);
         }
       });
     },

@@ -15,7 +15,8 @@ export const store = createStore({
     state() {
         return {
             notes: [],
-            user: null
+            username: null,
+            password: null
         }
     },
     mutations: {
@@ -23,7 +24,10 @@ export const store = createStore({
             state.notes = payload;
         },
         setUser(state, payload) {
-            state.user = payload;
+            state.username = payload;
+        },
+        setPassword(state, payload) {
+            state.password = payload;
         }
     },
     actions: {
@@ -31,16 +35,21 @@ export const store = createStore({
             const response = await axios.get("listNotes");
             context.commit('setNotes', response.data ? response.data.data : []);
         },
-        async authUser(context) {
-            const response = await axios.post("authUser");
-            if (response.data.authenticated) {
-                context.commit('setUser', response.data.user);
+        async validateUser(context) {
+            const response = await axios.post("validateUser", {
+                username,
+                password
+            });
+            if (response.status === "success") {
+                context.commit('setUser', response.data.username);
+                context.commit('setPassword', response.data.password);
             }
         },
         async logoutUser(context) {
             const response = await axios.post("logout");
             if (response.data.success) {
                 context.commit("setUser", null);
+                context.commit("setPassword", null);
             }
         }
     },
