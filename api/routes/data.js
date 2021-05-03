@@ -257,10 +257,10 @@ router.post('/loginUser', async (req, res, next) => {
 
 	if (req.body) {
 		try {
-			const data = await UserService.validateUser(req.body);
+			const data = await UserService.fetchUser(req.body);
 			if (data.status === "success") {
 				res.set({
-					"Set-Cookie": `token=encryptedstring; HttpOnly; Max-Age=${cookieMaxAge}`,
+					"Set-Cookie": `token=${data.data[0]._id}; HttpOnly; Max-Age=${cookieMaxAge}`,
 				});
 			}
 			res.statusCode = data.statusCode;
@@ -277,6 +277,26 @@ router.post('/loginUser', async (req, res, next) => {
 		res.send({
 			status: 'failed',
 			message: 'Invalid ID'
+		});
+	}
+
+});
+
+router.get('/authUser', async (req, res, next) => {
+
+	res.set({
+		'Content-type': 'application/json'
+	});
+
+	if (req.cookies.token) {
+		const data = await UserService.fetchUserById(req.cookies.token);
+		res.statusCode = data.statusCode;
+		res.send(data);
+	} else {
+		res.statusCode = 401;
+		res.send({
+			status: 'failed',
+			message: 'Unauthorized User'
 		});
 	}
 

@@ -169,7 +169,7 @@ class DataService {
 
 class UserService {
 
-	static validateUser(body) {
+	static fetchUser(body) {
 		return new Promise((resolve, reject) => {
 			const Users = models('users');
 			Users.find({
@@ -218,14 +218,14 @@ class UserService {
 		});
 	}
 
-	static fetchUser(username) {
+	static fetchUserById(id) {
 		return new Promise((resolve, reject) => {
 			const Users = models('users');
 			Users.find({
-				username
+				_id: id
 			}).exec((err, docs) => {
 				if (err) {
-					// logger.error(`Failed to retrieve user: ${username}`, err.message);
+					// logger.error(`Failed to retrieve note: ${id}`, err.message);
 					reject(new Error(err.message));
 				} else {
 					if (docs.length) {
