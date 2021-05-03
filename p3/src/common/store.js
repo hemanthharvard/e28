@@ -5,6 +5,9 @@ import {
 import {
     default as axios
 } from "@/common/app.js";
+import {
+    router
+} from '@/common/router.js';
 
 // Only load the createLogger plugin when in development mode
 const debug = process.env.NODE_ENV !== 'production';
@@ -37,6 +40,7 @@ export const store = createStore({
             const response = await axios.get("authUser");
             if (response.data.status === "success") {
                 context.commit('setUsername', response.data ? response.data.data[0].username : []);
+                router.push("/");
             } else {
                 context.commit('setUsername', null);
             }
