@@ -43,14 +43,21 @@ export default {
       errors: [],
     };
   },
+  mounted() {
+    this.authUser();
+  },
   methods: {
+    authUser() {
+      this.$store.dispatch("authUser");
+      this.$router.push("/");
+    },
     async login() {
       const response = await axios.post("loginUser", {
         username: this.data.username,
         password: this.data.password,
       });
       if (response.data.status === "success") {
-        this.$store.commit("setUser", this.data.username);
+        this.$store.commit("setUsername", this.data.username);
         this.$store.commit("setPassword", this.data.password);
         this.$router.push("/");
       } else {
@@ -63,7 +70,7 @@ export default {
         password: this.password,
       });
       if (response.data.status === "success") {
-        this.$store.commit("setUser", this.data.username);
+        this.$store.commit("setUsername", this.data.username);
         this.$store.commit("setPassword", this.data.password);
         this.$router.push("/login");
       } else {

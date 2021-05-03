@@ -23,7 +23,7 @@ export const store = createStore({
         setNotes(state, payload) {
             state.notes = payload;
         },
-        setUser(state, payload) {
+        setUsername(state, payload) {
             state.username = payload;
         },
         setPassword(state, payload) {
@@ -36,6 +36,11 @@ export const store = createStore({
                 username: context.state.username
             });
             context.commit('setNotes', response.data ? response.data.data : []);
+        },
+        async authUser(context) {
+            const response = await axios.get("authUser");
+            context.commit('setUsername', response.data ? response.data.data[0].username : []);
+            context.commit('setPassword', response.data ? response.data.data[0].password : []);
         },
     },
     getters: {
