@@ -63,6 +63,7 @@ export default {
     },
     handleLogout: function () {
       this.$store.dispatch("logoutUser");
+      this.$router.push("/login");
     },
   },
 };
