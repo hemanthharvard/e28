@@ -76,3 +76,12 @@
     text-decoration: none;
     display: inline-block;
 }
+
+.error {
+    color: #ff0000;
+}
+
+.form-button {
+    cursor: pointer;
+    color: #72bcd4;
+}

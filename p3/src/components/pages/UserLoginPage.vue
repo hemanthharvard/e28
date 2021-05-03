@@ -35,6 +35,10 @@
       </button>
       <button v-else v-on:click="login" data-test="login-button">Login</button>
 
+      <p class="form-button" v-on:click="toggleForm">
+        {{ createNewUserAccount ? "Back to login" : "Create a new account" }}
+      </p>
+
       <ul v-if="errors">
         <li class="error" v-for="(error, index) in errors" :key="index">
           {{ error }}
@@ -50,7 +54,7 @@ import { default as axios } from "@/common/app.js";
 export default {
   data() {
     return {
-      createNewUserAccount: true,
+      createNewUserAccount: false,
       data: {
         username: "",
         password: "",
@@ -59,6 +63,9 @@ export default {
     };
   },
   methods: {
+    toggleForm() {
+      this.createNewUserAccount = !this.createNewUserAccount;
+    },
     async login() {
       const response = await axios.post("loginUser", {
         username: this.data.username,
