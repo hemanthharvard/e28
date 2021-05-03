@@ -310,7 +310,7 @@ router.get('/authUser', async (req, res, next) => {
 		res.statusCode = data.statusCode;
 		res.send(data);
 	} else {
-		res.statusCode = 401;
+		res.statusCode = 200;
 		res.send({
 			status: 'failed',
 			message: 'Unauthorized User'

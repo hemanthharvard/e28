@@ -58,6 +58,7 @@ router.beforeEach(async (to, from, next) => {
     if (requiresAuth && !store.state.username) {
         // If they’re trying to access a requiresAuth route and they’re not logged in
         next('/login');
+
     } else {
         // In all other circumstances, send them to the route they requested
         next();

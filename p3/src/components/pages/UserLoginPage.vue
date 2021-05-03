@@ -43,13 +43,7 @@ export default {
       errors: [],
     };
   },
-  mounted() {
-    this.authUser();
-  },
   methods: {
-    authUser() {
-      this.$store.dispatch("authUser");
-    },
     async login() {
       const response = await axios.post("loginUser", {
         username: this.data.username,

@@ -22,6 +22,9 @@
           </li>
         </ul>
       </nav>
+      <div class="logout-button" @click="handleLogout">
+        Logout {{ this.$store.state.username }}
+      </div>
     </div>
     <p id="description">
       Note Keeper is your one-stop shop for all your note keeping needs.
@@ -46,6 +49,17 @@ export default {
         "Create new note": "/new",
       },
     };
+  },
+  mounted() {
+    this.authUser();
+  },
+  methods: {
+    authUser() {
+      this.$store.dispatch("authUser");
+    },
+    handleLogout: function () {
+      this.$store.dispatch("logoutUser");
+    },
   },
 };
 </script>

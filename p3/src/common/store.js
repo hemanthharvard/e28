@@ -42,6 +42,16 @@ export const store = createStore({
             if (response.data.status === "success") {
                 context.commit('setUsername', response.data ? response.data.data[0].username : []);
                 context.commit('setPassword', response.data ? response.data.data[0].password : []);
+            } else {
+                context.commit('setUsername', null);
+                context.commit('setPassword', null);
+            }
+        },
+        async logoutUser(context) {
+            const response = await axios.get("logoutUser");
+            if (response.data.status === "success") {
+                context.commit('setUsername', null);
+                context.commit('setPassword', null);
             }
         },
     },
