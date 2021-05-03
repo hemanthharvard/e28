@@ -49,12 +49,12 @@ export default {
         username: this.data.username,
         password: this.data.password,
       });
-      if (response.status === "success") {
-        this.$store.commit("setUser", response.data.username);
-        this.$store.commit("setPassword", response.data.password);
+      if (response.data.status === "success") {
+        this.$store.commit("setUser", this.data.username);
+        this.$store.commit("setPassword", this.data.password);
         this.$router.push("/");
       } else {
-        this.errors.push(response.message);
+        this.errors.push(response.data.message);
       }
     },
     async createNewUser() {
@@ -62,12 +62,12 @@ export default {
         username: this.username,
         password: this.password,
       });
-      if (response.status === "success") {
-        this.$store.commit("setUser", response.data.username);
-        this.$store.commit("setPassword", response.data.password);
+      if (response.data.status === "success") {
+        this.$store.commit("setUser", this.data.username);
+        this.$store.commit("setPassword", this.data.password);
         this.$router.push("/login");
       } else {
-        this.errors.push(response.message);
+        this.errors.push(response.data.message);
       }
     },
   },

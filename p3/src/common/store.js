@@ -33,27 +33,10 @@ export const store = createStore({
     actions: {
         async loadNotes(context) {
             const response = await axios.post("listNotes", {
-                username: this.$store.state.username
+                username: context.state.username
             });
             context.commit('setNotes', response.data ? response.data.data : []);
         },
-        async validateUser(context) {
-            const response = await axios.post("validateUser", {
-                usernam: this.$store.state.username,
-                password: this.$store.state.password
-            });
-            if (response.status === "success") {
-                context.commit('setUser', response.data.username);
-                context.commit('setPassword', response.data.password);
-            }
-        },
-        async logoutUser(context) {
-            const response = await axios.post("logout");
-            if (response.data.success) {
-                context.commit("setUser", null);
-                context.commit("setPassword", null);
-            }
-        }
     },
     getters: {
         getFavoriteNotes: (state) => () => {

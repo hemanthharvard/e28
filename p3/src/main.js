@@ -55,9 +55,8 @@ router.beforeEach(async (to, from, next) => {
     // Ref: https://router.vuejs.org/guide/advanced/meta.html#route-meta-fields
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
-    if (requiresAuth && !store.state.user) {
-        // If they’re trying to access a requiresAuth route and they’re not logged in, 
-        // they get sent to "Access Denied" page
+    if (requiresAuth && !store.state.username) {
+        // If they’re trying to access a requiresAuth route and they’re not logged in
         next('/login');
     } else {
         // In all other circumstances, send them to the route they requested

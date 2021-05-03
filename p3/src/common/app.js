@@ -21,7 +21,7 @@ class Axios {
             return response;
         } catch (error) {
             console.error('Axios get failed: ', error);
-            return {};
+            return error.message;
         }
 
     }
@@ -38,7 +38,7 @@ class Axios {
             return response;
         } catch (error) {
             console.error('Axios put failed: ', error);
-            return {};
+            return error.message;
         }
 
     }
@@ -55,7 +55,7 @@ class Axios {
             return response;
         } catch (error) {
             console.error('Axios post failed: ', error);
-            return {};
+            return error.message;
         }
     }
 
@@ -71,7 +71,7 @@ class Axios {
             return response;
         } catch (error) {
             console.error('Axios delete failed: ', error);
-            return {};
+            return error.message;
         }
 
     }

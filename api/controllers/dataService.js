@@ -189,7 +189,8 @@ class UserService {
 					} else {
 						resolve({
 							status: 'failed',
-							statusCode: 404,
+							statusCode: 200,
+							message: 'User not found',
 							data: docs
 						});
 					}

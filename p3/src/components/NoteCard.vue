@@ -109,6 +109,7 @@ export default {
         title: this.title,
         content: this.content,
         isFavorite: this.isFavorite,
+        username: this.$store.state.username,
       };
       if (this.title && this.content) {
         this.addCard(data);
