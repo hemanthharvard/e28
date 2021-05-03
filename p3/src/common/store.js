@@ -39,8 +39,8 @@ export const store = createStore({
         },
         async validateUser(context) {
             const response = await axios.post("validateUser", {
-                username,
-                password
+                usernam: this.$store.state.username,
+                password: this.$store.state.password
             });
             if (response.status === "success") {
                 context.commit('setUser', response.data.username);

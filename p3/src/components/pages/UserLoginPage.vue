@@ -1,19 +1,11 @@
 <template>
   <div id="account-page">
-    <div v-if="user">
-      <button v-on:click="logout" data-test="logout-button">Logout</button>
-    </div>
-
-    <div v-else id="loginForm">
+    <div id="loginForm">
       <h2>Login</h2>
-      <small>
-        (Form is prefilled for demonstration purposes; remove in final
-        application)
-      </small>
       <div>
         <label>
-          Email:
-          <input type="text" v-model="data.email" data-test="email-input" />
+          Username:
+          <input type="text" v-model="data.username" data-test="text" />
         </label>
       </div>
       <div>
@@ -39,26 +31,32 @@
 </template>
 
 <script>
-import { axios } from "@/common/app.js";
+import { default as axios } from "@/common/app.js";
 
 export default {
   data() {
     return {
-      // Form is prefilled for demonstration purposes; remove in final application
-      // jill@harvard.edu/asdfasdf is one of our seed users from e28api/seeds/user.json
       data: {
-        email: "",
+        username: "",
         password: "",
       },
-      errors: null,
+      errors: [],
     };
   },
-  computed: {
-    user() {
-      return this.$store.state.user;
-    },
-  },
   methods: {
+    async login() {
+      const response = await axios.post("loginUser", {
+        username: this.data.username,
+        password: this.data.password,
+      });
+      if (response.status === "success") {
+        this.$store.commit("setUser", response.data.username);
+        this.$store.commit("setPassword", response.data.password);
+        this.$router.push("/");
+      } else {
+        this.errors.push(response.message);
+      }
+    },
     async createNewUser() {
       const response = await axios.post("newUser", {
         username: this.username,
@@ -67,24 +65,11 @@ export default {
       if (response.status === "success") {
         this.$store.commit("setUser", response.data.username);
         this.$store.commit("setPassword", response.data.password);
+        this.$router.push("/login");
+      } else {
+        this.errors.push(response.message);
       }
     },
-    async logout() {
-      axios.post("logout").then((response) => {
-        if (response.status === "success") {
-          this.$store.commit("setUser", null);
-          this.$store.commit("setPassword", null);
-        }
-      });
-    },
-  },
-  watch: {
-    user() {
-      this.loadFavorites();
-    },
-  },
-  mounted() {
-    this.loadFavorites();
   },
 };
 </script>

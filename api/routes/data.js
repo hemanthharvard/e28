@@ -6,7 +6,7 @@ const UserService = dataService.UserService;
 
 const allowedOrigins = ['http://localhost:8081', 'http://e28p2.hemanthkishen.com', 'http://e28p3.hemanthkishen.com'];
 
-const cookieMaxAge = 24 * 60; // 24 hours
+const cookieMaxAge = 24 * 60 * 60; // 24 hours
 
 router.use((req, res, next) => {
 	res.set({
