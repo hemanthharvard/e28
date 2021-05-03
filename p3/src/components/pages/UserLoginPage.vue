@@ -1,7 +1,8 @@
 <template>
   <div id="account-page">
     <form id="loginForm">
-      <h2>Login</h2>
+      <h2 v-if="createNewUserAccount">Create an account</h2>
+      <h2 v-else>Login</h2>
       <div>
         <label>
           Username:
@@ -25,7 +26,14 @@
         </label>
       </div>
 
-      <button v-on:click="login" data-test="login-button">Login</button>
+      <button
+        v-if="createNewUserAccount"
+        v-on:click="signup"
+        data-test="signup-button"
+      >
+        Signup
+      </button>
+      <button v-else v-on:click="login" data-test="login-button">Login</button>
 
       <ul v-if="errors">
         <li class="error" v-for="(error, index) in errors" :key="index">
@@ -42,6 +50,7 @@ import { default as axios } from "@/common/app.js";
 export default {
   data() {
     return {
+      createNewUserAccount: true,
       data: {
         username: "",
         password: "",
@@ -62,10 +71,10 @@ export default {
         this.errors.push(response.data.message);
       }
     },
-    async createNewUser() {
+    async signup() {
       const response = await axios.post("newUser", {
-        username: this.username,
-        password: this.password,
+        username: this.data.username,
+        password: this.data.password,
       });
       if (response.data.status === "success") {
         this.$store.commit("setUsername", this.data.username);
