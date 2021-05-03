@@ -1,11 +1,16 @@
 <template>
   <div id="account-page">
-    <div id="loginForm">
+    <form id="loginForm">
       <h2>Login</h2>
       <div>
         <label>
           Username:
-          <input type="text" v-model="data.username" data-test="text" />
+          <input
+            type="text"
+            autocomplete="current-username"
+            v-model="data.username"
+            data-test="text"
+          />
         </label>
       </div>
       <div>
@@ -13,6 +18,7 @@
           Password:
           <input
             type="password"
+            autocomplete="current-password"
             v-model="data.password"
             data-test="password-input"
           />
@@ -26,7 +32,7 @@
           {{ error }}
         </li>
       </ul>
-    </div>
+    </form>
   </div>
 </template>
 
