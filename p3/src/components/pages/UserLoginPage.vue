@@ -3,7 +3,7 @@
     <form id="loginForm">
       <h2 v-if="createNewUserAccount">Create an account</h2>
       <h2 v-else>Login</h2>
-      <div>
+      <div class="form-item">
         <label>
           Username:
           <input
@@ -14,7 +14,7 @@
           />
         </label>
       </div>
-      <div>
+      <div class="form-item">
         <label>
           Password:
           <input

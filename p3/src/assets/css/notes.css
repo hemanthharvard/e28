@@ -82,6 +82,11 @@
 }
 
 .form-button {
-    cursor: pointer;
     color: #72bcd4;
+    cursor: pointer;
+    width: 35%;
+}
+
+.form-item {
+    padding: 1%;
 }
