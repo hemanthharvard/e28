@@ -39,8 +39,10 @@ export const store = createStore({
         },
         async authUser(context) {
             const response = await axios.get("authUser");
-            context.commit('setUsername', response.data ? response.data.data[0].username : []);
-            context.commit('setPassword', response.data ? response.data.data[0].password : []);
+            if (response.data.status === "success") {
+                context.commit('setUsername', response.data ? response.data.data[0].username : []);
+                context.commit('setPassword', response.data ? response.data.data[0].password : []);
+            }
         },
     },
     getters: {

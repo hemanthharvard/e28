@@ -282,6 +282,23 @@ router.post('/loginUser', async (req, res, next) => {
 
 });
 
+router.get('/logoutUser', async (req, res, next) => {
+
+	res.set({
+		'Content-type': 'application/json'
+	});
+
+	res.set({
+		"Set-Cookie": `token=${req.cookies.token}; HttpOnly; Max-Age=0`,
+	});
+	res.statusCode = 200;
+	res.send({
+		status: 'success',
+		message: 'User Logged Out'
+	});
+
+});
+
 router.get('/authUser', async (req, res, next) => {
 
 	res.set({

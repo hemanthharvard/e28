@@ -49,7 +49,6 @@ export default {
   methods: {
     authUser() {
       this.$store.dispatch("authUser");
-      this.$router.push("/");
     },
     async login() {
       const response = await axios.post("loginUser", {
