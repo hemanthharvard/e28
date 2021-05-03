@@ -1,6 +1,6 @@
 <template>
   <div id="account-page">
-    <form id="loginForm">
+    <div id="loginForm">
       <h2 v-if="createNewUserAccount">Create an account</h2>
       <h2 v-else>Login</h2>
       <div class="form-item">
@@ -44,7 +44,7 @@
           {{ error }}
         </li>
       </ul>
-    </form>
+    </div>
   </div>
 </template>
 
@@ -85,7 +85,7 @@ export default {
       });
       if (response.data.status === "success") {
         this.$store.commit("setUsername", this.data.username);
-        this.$router.push("/login");
+        this.$router.push("/");
       } else {
         this.errors.push(response.data.message);
       }
