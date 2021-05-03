@@ -15,13 +15,14 @@ class Axios {
             if (response.status && response.status >= 300) {
                 throw ({
                     status: response.status,
-                    statusCode: response.statusCode
+                    statusCode: response.statusCode,
+                    response,
                 })
             }
             return response;
         } catch (error) {
             console.error('Axios get failed: ', error);
-            return error.message;
+            return error.response;
         }
 
     }
@@ -32,13 +33,14 @@ class Axios {
             if (response.status && response.status >= 300) {
                 throw ({
                     status: response.status,
-                    statusCode: response.statusCode
+                    statusCode: response.statusCode,
+                    response,
                 })
             }
             return response;
         } catch (error) {
             console.error('Axios put failed: ', error);
-            return error.message;
+            return error.response;
         }
 
     }
@@ -49,13 +51,14 @@ class Axios {
             if (response.status && response.status >= 300) {
                 throw ({
                     status: response.status,
-                    statusCode: response.statusCode
+                    statusCode: response.statusCode,
+                    response,
                 })
             }
             return response;
         } catch (error) {
             console.error('Axios post failed: ', error);
-            return error.message;
+            return error.response;
         }
     }
 
@@ -65,13 +68,14 @@ class Axios {
             if (response.status && response.status >= 300) {
                 throw ({
                     status: response.status,
-                    statusCode: response.statusCode
+                    statusCode: response.statusCode,
+                    response,
                 })
             }
             return response;
         } catch (error) {
             console.error('Axios delete failed: ', error);
-            return error.message;
+            return error.response;
         }
 
     }

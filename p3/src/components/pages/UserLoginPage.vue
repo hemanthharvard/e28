@@ -84,8 +84,7 @@ export default {
         password: this.data.password,
       });
       if (response.data.status === "success") {
-        this.$store.commit("setUsername", this.data.username);
-        this.$router.push("/");
+        this.toggleForm();
       } else {
         this.errors.push(response.data.message);
       }
