@@ -22,8 +22,12 @@
           </li>
         </ul>
       </nav>
-      <div class="logout-button" @click="handleLogout">
-        Logout {{ this.$store.state.username }}
+      <div
+        v-if="this.$store.state.username"
+        class="logout-button"
+        @click="handleLogout"
+      >
+        Logout, {{ this.$store.state.username }}
       </div>
     </div>
     <p id="description">
