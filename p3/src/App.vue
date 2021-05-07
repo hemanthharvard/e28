@@ -44,12 +44,12 @@ export default {
   data() {
     return {
       /* Store links in an array to maintain order */
-      links: ["Home", "Favourites", "Create new note"],
+      links: ["Home", "Favorites", "Create new note"],
 
       /* Map links to  the appropriate component */
       paths: {
         Home: "/",
-        Favourites: "/favourites",
+        Favorites: "/favorites",
         "Create new note": "/new",
       },
     };

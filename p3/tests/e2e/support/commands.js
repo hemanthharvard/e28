@@ -2,16 +2,17 @@
 
 // User
 const user = {
-    id: 1,
-    name: 'Jill Harvard',
-    email: 'jill@harvard.edu',
-    password: 'asdfasdf'
-}
+    username: 'test',
+    password: 'test'
+};
+
+Cypress.Cookies.debug(true);
 
 Cypress.Commands.add('login', () => {
-    cy.visit('/account');
-    cy.get('[data-test=email-input]').clear().type(user.email);
+    cy.visit('/login');
+    cy.contains('h2', 'Login');
+    cy.get('[data-test=username-input]').clear().type(user.username);
     cy.get('[data-test=password-input]').clear().type(user.password);
     cy.get('[data-test=login-button]').click();
-    cy.contains('[data-test="welcome-message"]', user.name);
-})
+    cy.contains('#description', ' Note Keeper is your one-stop shop for all your note keeping needs.');
+});

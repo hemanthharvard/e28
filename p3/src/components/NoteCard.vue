@@ -2,7 +2,7 @@
   <div id="note-card">
     <div class="star" v-if="!editMode && note.isFavorite">&#9733;</div>
     <div class="star" v-if="!editMode && !note.isFavorite">&#9734;</div>
-    <div class="title" v-if="editMode">
+    <div class="title" data-test="card-title" v-if="editMode">
       <input
         type="text"
         id="title"
@@ -11,10 +11,10 @@
         maxlength="30"
       />
     </div>
-    <div class="title" v-else>
+    <div data-test="card-title" class="title" v-else>
       {{ note.title }}
     </div>
-    <div class="content" v-if="editMode">
+    <div class="content" data-test="card-message" v-if="editMode">
       <textarea
         id="content"
         name="content"
@@ -25,7 +25,7 @@
       >
       </textarea>
     </div>
-    <div class="content" v-else>
+    <div data-test="card-message" class="content" v-else>
       {{ note.content }}
     </div>
     <div v-if="editMode">

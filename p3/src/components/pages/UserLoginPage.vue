@@ -10,7 +10,7 @@
             type="text"
             autocomplete="current-username"
             v-model="data.username"
-            data-test="text"
+            data-test="username-input"
           />
         </label>
       </div>

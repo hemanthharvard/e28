@@ -1,5 +1,5 @@
 <template>
-  <div id="favourites-page">
+  <div id="favorites-page">
     <ul>
       <li v-for="note in filteredNotes" :key="note._id">
         <note-card :label="note.title" v-bind:note="note"></note-card>
@@ -35,17 +35,17 @@ export default {
 </script>
 
 <style scoped>
-#favourites-page {
+#favorites-page {
   padding: 2%;
 }
-#favourites-page > ul {
+#favorites-page > ul {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
   list-style: none;
 }
-#favourites-page > ul > li {
+#favorites-page > ul > li {
   padding: 2%;
   min-width: 315px;
   height: 30%;
