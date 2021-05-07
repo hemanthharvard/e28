@@ -6,7 +6,7 @@ const user = {
     password: 'test'
 };
 
-Cypress.Cookies.debug(true);
+Cypress.Cookies.debug(true); // now Cypress will log when it alters cookies
 
 Cypress.Commands.add('login', () => {
     cy.visit('/login');
